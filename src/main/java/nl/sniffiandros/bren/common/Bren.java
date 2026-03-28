@@ -104,6 +104,7 @@ public class Bren implements ModInitializer {
 				output.accept(ItemReg.FIRE_AXE);
 				output.accept(ItemReg.EXPLOSIVE_SPEAR);
 				output.accept(ItemReg.AIR_GUN);
+				output.accept(ItemReg.SMG);
 
 
 

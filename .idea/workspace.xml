@@ -7,7 +7,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="" />
+    <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/items/smg.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/smg_0.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/smg_1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/smg_0.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/smg_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/items/smg.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/smg_0_3d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/smg_1_3d.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/textures/item/smg.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/ItemReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/ItemReg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/auto_gun_with_magazine_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/auto_gun_with_magazine_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/lever_action_rifle_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/lever_action_rifle_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/n_rifle_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/n_rifle_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/n_rifle_with_magazine_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/n_rifle_with_magazine_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/netherite_shotgun_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/netherite_shotgun_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/rifle_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/rifle_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/rifle_with_magazine_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/rifle_with_magazine_3d.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/shotgun_3d.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/models/item/shotgun_3d.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -68,6 +89,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;bin-github-noisy&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/bin-github-noisy/Bren_Bin.git&quot;,
+    &quot;accountId&quot;: &quot;5f7c76b4-9434-40bd-8f93-babfef3844a0&quot;
+  }
+}</component>
   <component name="GradleLocalSettings">
     <option name="myGradleUserHome" value="$USER_HOME$/.mcreator/gradle" />
   </component>
@@ -98,19 +131,20 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "F:/mc-musketmod-patch-1/Bren - 26.1/src/main/java/nl/sniffiandros/bren/common/registry",
+    "last_opened_file_path": "F:/mc-musketmod-patch-1/Bren - 26.1/src/main/resources/resourcepacks/bren_3d_resources/assets/bren/items",
     "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\java\nl\sniffiandros\bren\common\registry" />
-      <recent name="G:\mc-musketmod-patch-1\Bren - 1.21.11\src\main\resources\assets\bren\models\item" />
-      <recent name="G:\mc-musketmod-patch-1\Bren - 1.21.11\src\main\resources\assets\bren\textures\item" />
-      <recent name="G:\mc-musketmod-patch-1\Bren - 1.21.11\src\main\resources\assets\bren\items" />
-      <recent name="G:\mc-musketmod-patch-1\Bren - 1.21.11" />
+      <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\resourcepacks\bren_3d_resources\assets\bren\items" />
+      <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\assets\bren\items" />
+      <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\assets\bren\textures\item" />
+      <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\assets\bren\models\item" />
+      <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\resourcepacks\bren_3d_resources\assets\bren\textures\item" />
     </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="nl.sniffiandros.bren.client.model" />
@@ -120,7 +154,7 @@
       <recent name="nl.sniffiandros.bren.common.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Bren - 26.1 [build]">
+  <component name="RunManager" selected="Gradle.Bren - 26.1 [runClient]">
     <configuration name="Bren - 26.1 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -189,8 +223,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
+        <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
       </list>
     </recent_temporary>
@@ -204,6 +238,17 @@
       <updated>1766236935205</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
