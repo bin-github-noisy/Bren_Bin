@@ -1,0 +1,474 @@
+package nl.sniffiandros.bren.common.mixin.client;
+
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.item.ItemModelResolver;
+import net.minecraft.client.renderer.item.ItemStackRenderState;
+import net.minecraft.client.renderer.item.SpecialModelWrapper;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import nl.sniffiandros.bren.common.entity.IGunUser;
+import nl.sniffiandros.bren.common.registry.custom.types.GunItem;
+import nl.sniffiandros.bren.common.utils.GunHelper;
+import org.jetbrains.annotations.Nullable;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+
+@SuppressWarnings("ALL")
+@Environment(value= EnvType.CLIENT)
+@Mixin(SpecialModelWrapper.class)
+public abstract class ItemRendererMixin {
+
+    // 基于 Minecraft 26.1-alpha 新渲染系统的注入点
+    // 注入到 SpecialModelWrapper.update 方法，这是新的渲染系统核心方法
+    @Inject(at = @At("HEAD"), method = "update")
+    private void bren$renderGunAnimation(
+            ItemStackRenderState output, 
+            ItemStack item, 
+            ItemModelResolver resolver, 
+            ItemDisplayContext displayContext, 
+            @Nullable net.minecraft.client.multiplayer.ClientLevel level, 
+            @Nullable net.minecraft.world.entity.ItemOwner owner, 
+            int seed, 
+            CallbackInfo ci) {
+        
+        Minecraft client = Minecraft.getInstance();
+
+        // 只在客户端且玩家存在时处理
+        if (client.player != null && client.getCameraEntity() instanceof LivingEntity livingEntity) {
+            ItemStack mainHandItem = client.player.getMainHandItem();
+            ItemStack offHandItem = client.player.getOffhandItem();
+
+            // 检查是否为枪械物品（主手或副手）
+            boolean isMainHandGun = !mainHandItem.isEmpty() && mainHandItem.getItem() instanceof GunItem;
+            boolean isOffHandGun = !offHandItem.isEmpty() && offHandItem.getItem() instanceof GunItem;
+
+            // 调试信息：显示当前渲染状态
+            if (isMainHandGun || isOffHandGun) {
+                System.out.println("[Bren Debug] Gun animation triggered for display context: " + displayContext);
+            }
+
+            // 检查是否为第一人称渲染模式
+            boolean isFirstPerson = isFirstPersonRender(displayContext);
+            
+            // 调试信息：显示当前渲染模式
+            if (isMainHandGun || isOffHandGun) {
+                System.out.println("[Bren Debug] Display context: " + displayContext + ", isFirstPerson: " + isFirstPerson);
+            }
+            
+            if (isFirstPerson) {
+                // 应用第一人称枪械动画变换到渲染状态
+                if (isMainHandGun) {
+                    System.out.println("[Bren Debug] Applying first person animation to main hand");
+                    applyFirstPersonAnimationTransform(output, livingEntity, mainHandItem);
+                } else if (isOffHandGun) {
+                    System.out.println("[Bren Debug] Applying first person animation to off hand");
+                    applyFirstPersonAnimationTransform(output, livingEntity, offHandItem);
+                }
+            } else {
+                // 应用第三人称枪械动画变换到渲染状态
+                if (isMainHandGun) {
+                    applyThirdPersonAnimationTransform(output, livingEntity, mainHandItem);
+                } else if (isOffHandGun) {
+                    applyThirdPersonAnimationTransform(output, livingEntity, offHandItem);
+                }
+            }
+        }
+    }
+
+    @Unique
+    private void applyFirstPersonAnimationTransform(ItemStackRenderState output, LivingEntity livingEntity, ItemStack itemStack) {
+        // 第一人称动画逻辑 - 通过 ItemStackRenderState 应用变换
+        // 这里可以添加第一人称特有的动画效果
+        if (livingEntity instanceof Player player && livingEntity instanceof IGunUser gunUser) {
+            if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem gunItem) {
+                float cooldownProgress = player.getCooldowns().getCooldownPercent(itemStack, 0.0F);
+                GunHelper.GunStates gunState = gunUser.bren_1_21_1$getGunState();
+                boolean reloading = gunState.equals(GunHelper.GunStates.RELOADING);
+                boolean leftHanded = livingEntity.getMainArm().equals(HumanoidArm.LEFT);
+                
+                // 应用第一人称动画逻辑
+                applyFirstPersonAnimationLogic(output, livingEntity, itemStack, cooldownProgress, reloading, leftHanded);
+            }
+        }
+    }
+    
+    @Unique
+    private void applyThirdPersonAnimationTransform(ItemStackRenderState output, LivingEntity livingEntity, ItemStack itemStack) {
+        // 第三人称动画逻辑 - 通过 ItemStackRenderState 应用变换
+        // 这里可以添加第三人称特有的动画效果
+        if (livingEntity instanceof Player player && livingEntity instanceof IGunUser gunUser) {
+            if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem gunItem) {
+                float cooldownProgress = player.getCooldowns().getCooldownPercent(itemStack, 0.0F);
+                GunHelper.GunStates gunState = gunUser.bren_1_21_1$getGunState();
+                boolean reloading = gunState.equals(GunHelper.GunStates.RELOADING);
+                boolean leftHanded = livingEntity.getMainArm().equals(HumanoidArm.LEFT);
+                
+                // 应用第三人称动画逻辑
+                applyThirdPersonAnimationLogic(output, livingEntity, itemStack, cooldownProgress, reloading, leftHanded);
+            }
+        }
+    }
+    
+    @Unique
+    private void applyFirstPersonAnimationLogic(ItemStackRenderState output, LivingEntity entity, ItemStack itemStack, float cooldownProgress, boolean reloading, boolean leftHanded) {
+        // 第一人称动画逻辑 - 精细的近距离动画效果
+        // 获取时间参数
+        float f = cooldownProgress;
+        float f1 = cooldownProgress;
+
+        // 如果物品是GunItem且实现了applyCustomMatrix方法，则调用自定义矩阵变换
+        if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem gunItem) {
+            GunHelper.GunStates gunState = reloading ? GunHelper.GunStates.RELOADING : GunHelper.GunStates.NORMAL;
+
+            // 注意：在新的渲染系统中，我们不使用PoseStack，而是通过ItemStackRenderState应用变换
+            // 因此这里不再调用applyCustomMatrix，因为它期望一个非null的PoseStack
+            // 所有动画变换都通过ItemStackRenderState API处理
+        }
+
+        // 使用正确的1.21.6方法获取tickDelta
+        Minecraft client = Minecraft.getInstance();
+        float delta = client.getDeltaTracker().getGameTimeDeltaPartialTick(true);
+
+        // 第一人称动画逻辑（基于1.21.6版本）
+        float sin = (float) Math.sin((f * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
+        float sin2 = (float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
+        float sin3 = reloading ? sin2 : (float) Math.sin(1 - f);
+        
+        double d = (Math.sin(((float) entity.tickCount + delta) / 2) * (reloading ? sin2 : f1)) * 30;
+        
+        // 在新的渲染系统中，通过修改渲染状态来应用变换
+        // 这里需要根据 ItemStackRenderState API 来应用动画变换
+        // 暂时使用占位符，稍后根据具体API实现
+        applyFirstPersonTransformViaRenderState(output, sin, sin2, sin3, d, leftHanded, reloading);
+    }
+    
+    @Unique
+    private void applyThirdPersonAnimationLogic(ItemStackRenderState output, LivingEntity entity, ItemStack itemStack, float cooldownProgress, boolean reloading, boolean leftHanded) {
+        // 第三人称动画逻辑 - 简化的远距离动画效果
+        // 获取时间参数
+        float f = cooldownProgress;
+        float f1 = cooldownProgress;
+
+        // 如果物品是GunItem且实现了applyCustomMatrix方法，则调用自定义矩阵变换
+        if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem gunItem) {
+            GunHelper.GunStates gunState = reloading ? GunHelper.GunStates.RELOADING : GunHelper.GunStates.NORMAL;
+
+            // 注意：在新的渲染系统中，我们不使用PoseStack，而是通过ItemStackRenderState应用变换
+            // 因此这里不再调用applyCustomMatrix，因为它期望一个非null的PoseStack
+            // 所有动画变换都通过ItemStackRenderState API处理
+        }
+
+        // 第三人称动画逻辑（基于1.21.6版本）
+        float z = Math.max((1 - f + f1) / 2, 0);
+        float f2 = reloading ? ((float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F) / 3 : z;
+        
+        // 在新的渲染系统中，通过修改渲染状态来应用变换
+        // 这里需要根据 ItemStackRenderState API 来应用动画变换
+        // 暂时使用占位符，稍后根据具体API实现
+        applyThirdPersonTransformViaRenderState(output, f2, leftHanded);
+    }
+    
+    @Unique
+    private void applyFirstPersonTransformViaRenderState(ItemStackRenderState output, float sin, float sin2, float sin3, double d, boolean leftHanded, boolean reloading) {
+        // 通过 ItemStackRenderState API 应用第一人称动画变换
+        try {
+            // 在 Minecraft 26.1 中，ItemStackRenderState 使用新的API
+            // 尝试使用新的方法来应用变换
+            
+            // 方法1：尝试使用新的变换API（基于Minecraft 26.1的渲染系统）
+            try {
+                // 使用新的变换方法，避免使用反射
+                applyModernFirstPersonTransform(output, sin, sin2, sin3, d, leftHanded, reloading);
+                System.out.println("[Bren Debug] First person animation applied successfully via modern API");
+                return; // 如果成功，直接返回
+            } catch (Exception e) {
+                System.err.println("[Bren Debug] Modern API failed: " + e.getMessage());
+            }
+            
+            // 方法2：尝试使用基础的位置和旋转设置
+            try {
+                // 使用更安全的方法来设置位置和旋转
+                applySafeFirstPersonTransform(output, sin, sin2, sin3, d, leftHanded, reloading);
+                System.out.println("[Bren Debug] First person animation applied successfully via safe method");
+                return; // 如果成功，直接返回
+            } catch (Exception e) {
+                System.err.println("[Bren Debug] Safe method failed: " + e.getMessage());
+            }
+            
+            // 如果所有方法都失败，记录调试信息
+            System.err.println("[Bren Debug] All first person animation methods failed");
+            
+        } catch (Exception e) {
+            // 如果所有方法都失败，记录错误但不中断游戏
+            System.err.println("[Bren Debug] Failed to apply first person animation transform: " + e.getMessage());
+        }
+    }
+    
+    @Unique
+    private void applyModernFirstPersonTransform(ItemStackRenderState output, float sin, float sin2, float sin3, double d, boolean leftHanded, boolean reloading) {
+        // 基于 Minecraft 26.1 新渲染系统的变换方法
+        // 使用正确的API来应用动画变换
+        
+        // 计算动画参数
+        float zOffset = reloading ? 0 : (sin / 2 + sin2 / 4) * 0.5F;
+        float zRotation = (float) (leftHanded ? -15 + d : 15 + d);
+        float xRotation = (sin3 * 10) * 0.5F;
+        
+        // 尝试使用正确的变换方法
+        try {
+            // 使用反射访问layers字段（复数形式）
+            java.lang.reflect.Field layersField = output.getClass().getDeclaredField("layers");
+            layersField.setAccessible(true);
+            Object[] layers = (Object[]) layersField.get(output);
+            
+            if (layers != null && layers.length > 0) {
+                // 获取第一个LayerRenderState
+                Object firstLayer = layers[0];
+                
+                // 获取localTransform字段
+                java.lang.reflect.Field localTransformField = firstLayer.getClass().getDeclaredField("localTransform");
+                localTransformField.setAccessible(true);
+                org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
+                
+                if (localTransform != null) {
+                    // 应用变换到localTransform矩阵
+                    localTransform.translate(0, 0, zOffset);
+                    localTransform.rotateZ((float) Math.toRadians(zRotation));
+                    localTransform.rotateX((float) Math.toRadians(xRotation));
+                    
+                    System.out.println("[Bren Debug] First person animation applied via localTransform");
+                    return;
+                }
+            }
+            
+            throw new RuntimeException("Layers or localTransform not found");
+            
+        } catch (Exception e) {
+            // 如果反射方法失败，回退到其他方法
+            throw new RuntimeException("Modern API failed: " + e.getMessage());
+        }
+    }
+    
+    @Unique
+    private void applySafeFirstPersonTransform(ItemStackRenderState output, float sin, float sin2, float sin3, double d, boolean leftHanded, boolean reloading) {
+        // 安全的第一人称动画变换方法
+        // 使用更保守的动画参数，避免过度变换
+        
+        float simpleOffset = reloading ? 0.02F : 0.05F; // 进一步减少偏移量
+        float simpleZRotation = leftHanded ? -3 : 3; // 进一步减少旋转角度
+        float simpleXRotation = reloading ? 1 : 2; // 进一步减少X轴旋转
+        
+        // 应用简单的动画变换
+        try {
+            // 使用反射访问layers字段（复数形式）
+            java.lang.reflect.Field layersField = output.getClass().getDeclaredField("layers");
+            layersField.setAccessible(true);
+            Object[] layers = (Object[]) layersField.get(output);
+            
+            if (layers != null && layers.length > 0) {
+                // 获取第一个LayerRenderState
+                Object firstLayer = layers[0];
+                
+                // 获取localTransform字段
+                java.lang.reflect.Field localTransformField = firstLayer.getClass().getDeclaredField("localTransform");
+                localTransformField.setAccessible(true);
+                org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
+                
+                if (localTransform != null) {
+                    // 应用简单的变换
+                    localTransform.translate(0, 0, simpleOffset);
+                    localTransform.rotateZ((float) Math.toRadians(simpleZRotation));
+                    localTransform.rotateX((float) Math.toRadians(simpleXRotation));
+                    
+                    System.out.println("[Bren Debug] Safe first person animation applied via localTransform");
+                    return;
+                }
+            }
+            
+            throw new RuntimeException("Layers or localTransform not found");
+            
+        } catch (Exception e) {
+            // 如果反射方法失败，抛出异常
+            throw new RuntimeException("Safe method failed: " + e.getMessage());
+        }
+    }
+    
+    @Unique
+    private void applyThirdPersonTransformViaRenderState(ItemStackRenderState output, float f2, boolean leftHanded) {
+        // 通过 ItemStackRenderState API 应用第三人称动画变换
+        try {
+            // 方法1：尝试使用LayerRenderState的localTransform
+            try {
+                // 使用反射访问layers字段（复数形式）
+                java.lang.reflect.Field layersField = output.getClass().getDeclaredField("layers");
+                layersField.setAccessible(true);
+                Object[] layers = (Object[]) layersField.get(output);
+                
+                if (layers != null && layers.length > 0) {
+                    // 获取第一个LayerRenderState
+                    Object firstLayer = layers[0];
+                    
+                    // 获取localTransform字段
+                    java.lang.reflect.Field localTransformField = firstLayer.getClass().getDeclaredField("localTransform");
+                    localTransformField.setAccessible(true);
+                    org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
+                    
+                    if (localTransform != null) {
+                        // 应用第三人称动画变换
+                        float yRotation = leftHanded ? 10 : -10;
+                        float xRotation = f2 * 30 + 45;
+                        
+                        localTransform.rotateY((float) Math.toRadians(yRotation));
+                        localTransform.rotateX((float) Math.toRadians(xRotation));
+                        localTransform.translate(0, -f2 / 4 + 0.25F, f2 / 8 - 0.25F);
+                        
+                        System.out.println("[Bren Debug] Third person animation applied successfully via localTransform");
+                        return; // 如果成功，直接返回
+                    }
+                }
+                
+                throw new RuntimeException("Layers or localTransform not found");
+                
+            } catch (Exception e) {
+                System.err.println("[Bren Debug] Third person localTransform method failed: " + e.getMessage());
+            }
+            
+            // 方法2：尝试使用更简单的动画效果
+            try {
+                // 使用反射访问layers字段（复数形式）
+                java.lang.reflect.Field layersField = output.getClass().getDeclaredField("layers");
+                layersField.setAccessible(true);
+                Object[] layers = (Object[]) layersField.get(output);
+                
+                if (layers != null && layers.length > 0) {
+                    // 获取第一个LayerRenderState
+                    Object firstLayer = layers[0];
+                    
+                    // 获取localTransform字段
+                    java.lang.reflect.Field localTransformField = firstLayer.getClass().getDeclaredField("localTransform");
+                    localTransformField.setAccessible(true);
+                    org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
+                    
+                    if (localTransform != null) {
+                        // 应用简单的动画变换
+                        float simpleRotation = leftHanded ? 15 : -15;
+                        localTransform.rotateY((float) Math.toRadians(simpleRotation));
+                        localTransform.translate(0, 0.1F, 0.1F);
+                        
+                        System.out.println("[Bren Debug] Simple third person animation applied successfully");
+                        return;
+                    }
+                }
+                
+                throw new RuntimeException("Layers or localTransform not found");
+                
+            } catch (Exception e) {
+                System.err.println("[Bren Debug] Simple third person animation approach also failed: " + e.getMessage());
+            }
+            
+            // 如果所有方法都失败，记录调试信息
+            System.err.println("[Bren Debug] All third person animation methods failed");
+            
+        } catch (Exception e) {
+            // 如果所有方法都失败，记录错误但不中断游戏
+            System.err.println("[Bren Debug] Failed to apply third person animation transform: " + e.getMessage());
+        }
+    }
+
+    @Unique
+    private static boolean isFirstPersonRender(net.minecraft.world.item.ItemDisplayContext itemDisplayContext) {
+        // 通过ItemDisplayContext判断是否为第一人称渲染
+        
+        // 调试：输出所有显示上下文信息
+        System.out.println("[Bren Debug] Checking display context: " + itemDisplayContext + ", name: " + itemDisplayContext.name());
+        
+        // 检查所有可能的第一人称显示上下文
+        boolean isFirstPerson = itemDisplayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_LEFT_HAND || 
+                               itemDisplayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_RIGHT_HAND;
+        
+        System.out.println("[Bren Debug] isFirstPerson result: " + isFirstPerson);
+        
+        return isFirstPerson;
+    }
+
+    @Unique
+    private static void applyGunAnimationTransform(PoseStack matrices, LivingEntity entity, ItemStack itemStack) {
+        // 这里可以应用后坐力、装弹等动画效果
+
+        // 示例：根据枪械状态应用不同的动画变换
+        if (entity instanceof Player player && entity instanceof IGunUser gunUser) {
+            if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem gunItem) {
+                // 获取枪械状态信息
+                float cooldownProgress = player.getCooldowns().getCooldownPercent(itemStack, 0.0F);
+                GunHelper.GunStates gunState = gunUser.bren_1_21_1$getGunState();
+                boolean reloading = gunState.equals(GunHelper.GunStates.RELOADING);
+                boolean leftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
+
+                // 应用1.21.6版本的动画逻辑
+                apply126AnimationLogic(matrices, entity, itemStack, cooldownProgress, reloading, leftHanded);
+
+            }
+        }
+    }
+
+
+    @Unique
+    private static void apply126AnimationLogic(PoseStack matrices, LivingEntity entity, ItemStack itemStack, float cooldownProgress, boolean reloading, boolean leftHanded) {
+        // 获取时间参数
+        float f = cooldownProgress;
+        float f1 = cooldownProgress;
+
+        // 如果物品是GunItem且实现了applyCustomMatrix方法，则调用自定义矩阵变换
+        if (!itemStack.isEmpty() && itemStack.getItem() instanceof GunItem gunItem) {
+            GunHelper.GunStates gunState = reloading ? GunHelper.GunStates.RELOADING : GunHelper.GunStates.NORMAL;
+
+            // 应用自定义矩阵变换
+            gunItem.applyCustomMatrix(entity, gunState, matrices, itemStack, cooldownProgress, leftHanded);
+        }
+
+        // 使用正确的1.21.6方法获取tickDelta
+        Minecraft client = Minecraft.getInstance();
+        float delta = client.getDeltaTracker().getGameTimeDeltaPartialTick(true);
+
+        Identifier itemId = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
+
+        // 判断是否为第一人称渲染
+        boolean isFirstPerson = client.options.getCameraType().isFirstPerson();
+        
+        if (isFirstPerson) {
+            // 第一人称动画逻辑（基于1.21.6版本）
+            float sin = (float) Math.sin((f * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
+            float sin2 = (float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
+            float sin3 = reloading ? sin2 : (float) Math.sin(1 - f);
+            
+            double d = (Math.sin(((float) entity.tickCount + delta) / 2) * (reloading ? sin2 : f1)) * 30;
+            
+            // 调整Z轴位置，减少模型过于靠前的问题
+            float zOffset = reloading ? 0 : (sin / 2 + f1 / 4) * 0.5F; // 减少50%的偏移量
+            matrices.translate(0, 0, zOffset);
+            matrices.mulPose(com.mojang.math.Axis.ZP.rotationDegrees((float) (leftHanded ? -15 + d : 15 + d)));
+            matrices.mulPose(com.mojang.math.Axis.XP.rotationDegrees((sin3 * 10) * 0.5F)); // 降低后坐力强度
+            
+        } else {
+            // 第三人称动画逻辑（基于1.21.6版本）
+            float z = Math.max((1 - f + f1) / 2, 0);
+            float f2 = reloading ? ((float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F) / 3 : z;
+            matrices.mulPose(com.mojang.math.Axis.YP.rotationDegrees(leftHanded ? 10 : -10));
+            matrices.mulPose(com.mojang.math.Axis.XP.rotationDegrees(f2 * 30 + 45));
+            
+            matrices.translate(0, -f2 / 4 + 0.25F, f2 / 8 - 0.25F);
+        }
+    }
+
+}

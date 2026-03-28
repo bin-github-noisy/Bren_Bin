@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "bren",
+	"version": "${version}",
+	"name": "Bren Refabriced",
+	"description": "EVER WANTED TO START A WAR!! Or just kill mobs better... ANYWAY THIS IS THE MOD FOR YOU!",
+	"authors": [
+		"Sniffiandros!","Bin!"
+	],
+	"contact": {
+		"homepage": ""
+	},
+	"license": "MIT",
+	"icon": "assets/bren/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"nl.sniffiandros.bren.common.Bren"
+		],
+		"client": [
+			"nl.sniffiandros.bren.client.ClientBren"
+		]
+	},
+	"mixins": [
+		"bren.mixins.json"
+	],
+	"custom": {
+		"fabric-resource-loader-v0": {
+			"includes": [
+				{
+					"id": "bren_3d_resources",
+					"name": "Bren 3D Resources",
+					"description": "3D resources for Bren guns",
+					"path": "resourcepacks/bren_3d_resources"
+				}
+			]
+		}
+	},
+	"depends": {
+		"fabricloader": ">=0.18.04",
+		"minecraft": ">=26.1- <26.2-",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

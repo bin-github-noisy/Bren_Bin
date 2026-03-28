@@ -1,0 +1,25 @@
+/give Player992 bren:drum_magazine
+/give Player230 bren:drum_magazine
+/give Player992 bren:drum_magazine
+/effect give @n minecraft:speed infinite 20
+/effect give @s minecraft:speed infinite 20
+/effect give @e minecraft:speed infinite 20
+/effect give @e minecraft:speed infinite 50
+/summon minecraft:warden
+/summon minecraft:wither
+/enchant Player277 minecraft:sharpness 255
+/enchant Player277 minecraft:sharpness 5
+/give Player277 minecraft:diamond_sword[minecraft:damage=5000000]
+/give Player277 minecraft:diamond_sword[minecraft:damage=50000,minecraft:enchantments=]
+/give Player277 minecraft:diamond_sword[minecraft:damage=50000,minecraft:enchantments={id:"fire_aspect",lvl:255}]
+/give Player277 minecraft:diamond_sword[minecraft:damage=50000,minecraft:enchantments={fire_aspect:255}]
+/give Player277 minecraft:diamond_sword[minecraft:damage=50000,minecraft:enchantments={sharpness:255}]
+/give Player277 minecraft:diamond_sword[minecraft:damage=50000,minecraft:enchantments={sharpness:255},minecraft:unbreakable={levels:1b}]
+/give Player277 minecraft:diamond_spear[minecraft:damage=50000,minecraft:enchantments={sharpness:255},minecraft:unbreakable={levels:1b}]
+/give Player815 bren:grenade
+/give @s bren:grenade
+/time set minecraft:day
+/execute in minecraft:the_end run tp ~ ~ ~
+/execute in minecraft:the_end run tp 0 100 0
+/place jigsaw minecraft:bastion/bridge/bridge_pieces
+/give Player27 bren:auto_pistol
