@@ -71,6 +71,7 @@ public class ItemReg {
     public static Item EXPLOSIVE_SPEAR;
     public static Item AIR_GUN;
     public static Item SMG;
+    public static Item AR_15;
     private static final float EXPLOSIVE_SPEAR_POWER = 3F;
 
 
@@ -183,6 +184,10 @@ public class ItemReg {
             NETHERITE_AUTO_GUN = registerGunItem("netherite_auto_gun", GunWithMagItem::new,
                 new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(3).recoil(AUTO_GUN_RECOIL)
                     .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
+
+            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
+                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
+                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
             // 步枪 - 使用SHORT_MAGAZINES标签
             AIR_GUN = registerGunItem("air_gun", AirGunItem::new,

@@ -33,3 +33,4 @@
 /tp @s 176 ~ 2208
 /locate structure bren:abandoned_factory
 /tp @s -1760 ~ 128
+/give Player803 bren:ar_15
