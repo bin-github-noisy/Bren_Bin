@@ -23,3 +23,13 @@
 /execute in minecraft:the_end run tp 0 100 0
 /place jigsaw minecraft:bastion/bridge/bridge_pieces
 /give Player27 bren:auto_pistol
+/time set minecraft:day
+/locate structure bren:abandoned_factory
+/tp @s 176 200 2208
+/tp @s 176 ~ 2208
+/
+/tp @s 176 ~ 2208
+/place structure bren:abandoned_factory
+/tp @s 176 ~ 2208
+/locate structure bren:abandoned_factory
+/tp @s -1760 ~ 128
