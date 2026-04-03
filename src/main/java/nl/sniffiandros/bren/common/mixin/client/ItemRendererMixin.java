@@ -225,6 +225,10 @@ public abstract class ItemRendererMixin {
         float zRotation = (float) (leftHanded ? -15 + d : 15 + d);
         float xRotation = (sin3 * 10) * 0.5F;
         
+        // 新增：向前且向外侧偏移
+        float forwardOffset = 0.1F; // 向前偏移量
+        float sideOffset = leftHanded ? -0.05F : 0.05F; // 向外侧偏移（左手向左，右手向右）
+        
         // 尝试使用正确的变换方法
         try {
             // 使用反射访问layers字段（复数形式）
@@ -242,12 +246,12 @@ public abstract class ItemRendererMixin {
                 org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
                 
                 if (localTransform != null) {
-                    // 应用变换到localTransform矩阵
-                    localTransform.translate(0, 0, zOffset);
+                    // 应用变换到localTransform矩阵（包含向前和向外侧偏移）
+                    localTransform.translate(sideOffset, 0, zOffset + forwardOffset);
                     localTransform.rotateZ((float) Math.toRadians(zRotation));
                     localTransform.rotateX((float) Math.toRadians(xRotation));
                     
-                    System.out.println("[Bren Debug] First person animation applied via localTransform");
+                    System.out.println("[Bren Debug] First person animation applied via localTransform with forward/side offset");
                     return;
                 }
             }
