@@ -44,6 +44,7 @@ public class SupplyCrateConfig {
         DEFAULT_GUN_CONFIGS.put("netherite_double_barrels_shotgun", new GunConfig("Netherite Double Barrels Shotgun", 1));
         DEFAULT_GUN_CONFIGS.put("netherite_lever_gun", new GunConfig("Netherite Lever Gun", 1));
         DEFAULT_GUN_CONFIGS.put("smg", new GunConfig("SMG", 16));
+        DEFAULT_GUN_CONFIGS.put("grappling_hook", new GunConfig("Grappling Hook", 5));
 
         // 初始化默认弹药配置
         DEFAULT_AMMO_CONFIGS.put("explosive_spear", new AmmoConfig("Explosive Spear", 4, 8, 32));

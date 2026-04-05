@@ -103,7 +103,7 @@ public abstract class FirstPersonItemRendererMixin {
         
         // 新增：向前且向外侧偏移
         float forwardOffset = -0.4F; // 向前偏移量
-        float sideOffset = leftHanded ? -0.05F : 0.05F; // 向外侧偏移（左手向左，右手向右）
+        float sideOffset = leftHanded ? 0.05F : -0.05F; // 向外侧偏移（左手向左，右手向右）
         
         poseStack.translate(sideOffset, yOffset, zOffset + forwardOffset);
      poseStack.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(zRotation));

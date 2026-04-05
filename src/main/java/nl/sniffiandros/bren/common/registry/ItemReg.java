@@ -72,6 +72,7 @@ public class ItemReg {
     public static Item AIR_GUN;
     public static Item SMG;
     public static Item AR_15;
+    public static Item GRAPPLING_HOOK;
     private static final float EXPLOSIVE_SPEAR_POWER = 3F;
 
 
@@ -142,6 +143,12 @@ public class ItemReg {
             CLOTHED_MAGAZINE = registerCustomItem("clothed_magazine", s -> new ColorableMagazineItem(s, 50), new Item.Properties().stacksTo(1));
             SHORT_MAGAZINE = registerCustomItem("short_magazine", s -> new MagazineItem(s, 15), new Item.Properties().stacksTo(1));
             FIRE_AXE = registerCustomItem("fire_axe", FireAxeItem::new, new Item.Properties().stacksTo(1));
+            
+            // 注册钩索
+            LOGGER.info("Registering grappling hook");
+            GRAPPLING_HOOK = registerCustomItem("grappling_hook", 
+                nl.sniffiandros.bren.common.registry.custom.types.GrapplingHookItem::new, 
+                new Item.Properties().stacksTo(1));
 
             // 第二步：注册枪械物品并立即注册属性 - 使用1.21.4+标准模式
             LOGGER.info("Registering gun items with properties");
@@ -185,9 +192,9 @@ public class ItemReg {
                 new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(3).recoil(AUTO_GUN_RECOIL)
                     .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
-            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
-                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
-                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
+//            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
+//                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
+//                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
             // 步枪 - 使用SHORT_MAGAZINES标签
             AIR_GUN = registerGunItem("air_gun", AirGunItem::new,

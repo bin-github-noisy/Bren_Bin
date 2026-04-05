@@ -4,7 +4,7 @@ biomeBlendRadius:2
 chunkSectionFadeInTime:0.75
 cutoutLeaves:true
 enableVsync:true
-entityDistanceScaling:1.0
+entityDistanceScaling:1.25
 entityShadows:true
 forceUnicodeFont:false
 japaneseGlyphVariants:false
@@ -18,20 +18,20 @@ prioritizeChunkUpdates:1
 fullscreen:false
 exclusiveFullscreen:false
 gamma:0.5
-guiScale:0
-maxAnisotropyBit:1
-textureFiltering:1
+guiScale:4
+maxAnisotropyBit:2
+textureFiltering:2
 maxFps:120
-improvedTransparency:false
+improvedTransparency:true
 inactivityFpsLimit:"afk"
 mipmapLevels:4
 narrator:0
 particles:0
 reducedDebugInfo:false
 renderClouds:"true"
-cloudRange:64
-renderDistance:8
-simulationDistance:8
+cloudRange:128
+renderDistance:12
+simulationDistance:12
 screenEffectScale:1.0
 soundDevice:""
 vignette:true
@@ -64,10 +64,10 @@ damageTiltStrength:1.0
 highContrast:false
 highContrastBlockOutline:false
 narratorHotkey:true
-resourcePacks:["vanilla","file/ReShaded [v.1.4] 1.21.11.zip"]
-incompatibleResourcePacks:["file/ReShaded [v.1.4] 1.21.11.zip"]
+resourcePacks:["vanilla","file/ReShaded [v.1.4.2] 26.1.zip"]
+incompatibleResourcePacks:[]
 lastServer:
-lang:en_us
+lang:zh_cn
 chatVisibility:0
 chatOpacity:1.0
 chatLineSpacing:0.0
@@ -169,7 +169,7 @@ key_key.debug.networkCharts:key.keyboard.3
 key_key.debug.lightmapTexture:key.keyboard.4
 key_key.bren.reload:key.keyboard.r
 soundCategory_master:1.0
-soundCategory_music:1.0
+soundCategory_music:0.0
 soundCategory_record:1.0
 soundCategory_weather:1.0
 soundCategory_block:1.0

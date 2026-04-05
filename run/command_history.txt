@@ -34,3 +34,5 @@
 /locate structure bren:abandoned_factory
 /tp @s -1760 ~ 128
 /give Player803 bren:ar_15
+/time set minecraft:day
+/give Player896 bren:grappling_hook

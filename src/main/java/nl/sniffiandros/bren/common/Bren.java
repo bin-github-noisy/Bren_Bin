@@ -82,6 +82,9 @@ public class Bren implements ModInitializer {
 		// 初始化数据包注册
 		DataPackReg.init();
 
+		// 注册钩索处理器
+		nl.sniffiandros.bren.common.events.GrapplingHookHandler.register();
+
 		// 注册自定义创意标签页
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, BREN_TAB, FabricCreativeModeTab.builder()
 			.title(Component.translatable("itemGroup." + MODID + ".bren_tab"))
@@ -98,13 +101,15 @@ public class Bren implements ModInitializer {
 				output.accept(ItemReg.NETHERITE_SHOTGUN);
 				output.accept(ItemReg.NETHERITE_DOUBLE_BARRELS_SHOTGUN);
 				output.accept(ItemReg.NETHERITE_RIFLE);
+				output.accept(ItemReg.NETHERITE_LEVER_GUN);
 				output.accept(ItemReg.NETHERITE_REVOLVER);
 				output.accept(ItemReg.AUTO_PISTOL);
 				output.accept(ItemReg.FLARE_GUN);
-				output.accept(ItemReg.FIRE_AXE);
-				output.accept(ItemReg.EXPLOSIVE_SPEAR);
-				output.accept(ItemReg.AIR_GUN);
-				output.accept(ItemReg.SMG);
+			output.accept(ItemReg.FIRE_AXE);
+			output.accept(ItemReg.EXPLOSIVE_SPEAR);
+			output.accept(ItemReg.AIR_GUN);
+			output.accept(ItemReg.SMG);
+			output.accept(ItemReg.GRAPPLING_HOOK);
 
 
 

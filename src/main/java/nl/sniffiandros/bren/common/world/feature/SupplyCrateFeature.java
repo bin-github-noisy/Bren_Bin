@@ -74,6 +74,8 @@ public class SupplyCrateFeature extends Feature<@org.jetbrains.annotations.NotNu
             GUN_POOL.add(new GunEntry(ItemReg.NETHERITE_LEVER_GUN, gunConfigs.get("netherite_lever_gun").weight));
         if (ItemReg.SMG != null && gunConfigs.containsKey("smg"))
             GUN_POOL.add(new GunEntry(ItemReg.SMG, gunConfigs.get("smg").weight));
+        if (ItemReg.GRAPPLING_HOOK != null && gunConfigs.containsKey("grappling_hook"))
+            GUN_POOL.add(new GunEntry(ItemReg.GRAPPLING_HOOK, gunConfigs.get("grappling_hook").weight));
         
         // 加载弹药配置
         Map<String, SupplyCrateConfig.AmmoConfig> ammoConfigs = SupplyCrateConfig.getAmmoConfigs();
