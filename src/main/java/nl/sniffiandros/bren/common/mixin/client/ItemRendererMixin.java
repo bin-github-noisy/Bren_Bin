@@ -136,6 +136,7 @@ public abstract class ItemRendererMixin {
             // 所有动画变换都通过ItemStackRenderState API处理
         }
 
+
         // 使用正确的1.21.6方法获取tickDelta
         Minecraft client = Minecraft.getInstance();
         float delta = client.getDeltaTracker().getGameTimeDeltaPartialTick(true);
@@ -219,7 +220,7 @@ public abstract class ItemRendererMixin {
     private void applyModernFirstPersonTransform(ItemStackRenderState output, float sin, float sin2, float sin3, double d, boolean leftHanded, boolean reloading) {
         // 基于 Minecraft 26.1 新渲染系统的变换方法
         // 使用正确的API来应用动画变换
-        
+
         // 计算动画参数
         float zOffset = reloading ? 0 : (sin / 2 + sin2 / 4) * 0.5F;
         float zRotation = (float) (leftHanded ? -15 + d : 15 + d);

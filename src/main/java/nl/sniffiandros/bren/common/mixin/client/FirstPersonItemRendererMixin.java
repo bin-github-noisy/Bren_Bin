@@ -79,7 +79,12 @@ public abstract class FirstPersonItemRendererMixin {
     @Unique
     private void applyFirstPersonAnimationLogic(PoseStack poseStack, LivingEntity entity, ItemStack stack, 
                                                float cooldownProgress, boolean reloading, boolean leftHanded) {
-        
+        if (!stack.isEmpty() && stack.getItem() instanceof GunItem gunItem) {
+            GunHelper.GunStates gunState = reloading ? GunHelper.GunStates.RELOADING : GunHelper.GunStates.NORMAL;
+
+            // 应用自定义矩阵变换
+            gunItem.applyCustomMatrix(entity, gunState, poseStack, stack, cooldownProgress, leftHanded);
+        }
         // 获取时间参数
         float f = cooldownProgress;
         float f1 = cooldownProgress;
