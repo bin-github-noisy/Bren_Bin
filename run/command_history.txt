@@ -36,3 +36,5 @@
 /give Player803 bren:ar_15
 /time set minecraft:day
 /give Player896 bren:grappling_hook
+/give Player361 bren:grenade
+/give @s bren:grenade

@@ -465,4 +465,13 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         LOGGER.debug("Updated magazine components for gun: hasMagazine={}, hasColorableMagazine={}", 
             hasMagazine, hasColorableMagazine);
     }
+
+    @Inject(method = "attack", at = @At("HEAD"))
+    private void onAttack(net.minecraft.world.entity.Entity target, CallbackInfo ci) {
+        Player player = (Player) (Object) this;
+        ItemStack mainHandStack = player.getMainHandItem();
+        
+        // 触发左键点击事件
+        MEvents.ITEM_LEFT_CLICK_EVENT.invoker().onLeftClick(player, mainHandStack);
+    }
 }

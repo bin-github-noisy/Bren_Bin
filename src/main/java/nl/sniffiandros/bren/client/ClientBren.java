@@ -77,6 +77,8 @@ public class ClientBren implements ClientModInitializer {
 
         ClientTickEvents.START_CLIENT_TICK.register(WeaponTickHolder::tick);
         ClientTickEvents.START_CLIENT_TICK.register(RecoilSys::tick);
+        
+        GrenadeClientHandler.register();
     }
 
     // 添加一个新的方法来处理模型注册

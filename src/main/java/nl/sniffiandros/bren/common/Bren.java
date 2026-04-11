@@ -55,7 +55,7 @@ public class Bren implements ModInitializer {
 		boolean added = ResourceManagerHelper.registerBuiltinResourcePack(
 				Identifier.fromNamespaceAndPath(MODID, "bren_3d_resources"), // 资源包ID
 				container,
-				ResourcePackActivationType.DEFAULT_ENABLED  // 玩家可以手动关闭
+				ResourcePackActivationType.NORMAL  // 玩家可以手动关闭
 		);
 		AttributeReg.reg();
 		// 注册数据组件类型（必须在物品注册之前）
@@ -85,6 +85,9 @@ public class Bren implements ModInitializer {
 		// 注册钩索处理器
 		nl.sniffiandros.bren.common.events.GrapplingHookHandler.register();
 
+		// 注册手雷处理器
+		nl.sniffiandros.bren.common.events.GrenadeHandler.register();
+
 		// 注册自定义创意标签页
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, BREN_TAB, FabricCreativeModeTab.builder()
 			.title(Component.translatable("itemGroup." + MODID + ".bren_tab"))
@@ -98,6 +101,7 @@ public class Bren implements ModInitializer {
 				output.accept(ItemReg.REVOLVER);
 				output.accept(ItemReg.NETHERITE_MACHINE_GUN);
 				output.accept(ItemReg.NETHERITE_AUTO_GUN);
+				output.accept(ItemReg.NETHERITE_TACTICAL_AUTO_GUN);
 				output.accept(ItemReg.NETHERITE_SHOTGUN);
 				output.accept(ItemReg.NETHERITE_DOUBLE_BARRELS_SHOTGUN);
 				output.accept(ItemReg.NETHERITE_RIFLE);
@@ -110,8 +114,6 @@ public class Bren implements ModInitializer {
 			output.accept(ItemReg.AIR_GUN);
 			output.accept(ItemReg.SMG);
 			output.accept(ItemReg.GRAPPLING_HOOK);
-
-
 
 				// 添加弹药
 				output.accept(ItemReg.BULLET);

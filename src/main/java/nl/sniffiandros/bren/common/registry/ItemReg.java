@@ -73,7 +73,11 @@ public class ItemReg {
     public static Item SMG;
     public static Item AR_15;
     public static Item GRAPPLING_HOOK;
+    public static Item GRENADE;
+    public static Item NETHERITE_TACTICAL_AUTO_GUN;
     private static final float EXPLOSIVE_SPEAR_POWER = 3F;
+    private static final float GRENADE_POWER = 4F;
+    private static final int GRENADE_FUSE_TIME = 40; // 2 seconds (20 ticks = 1 second)
 
 
 
@@ -189,8 +193,12 @@ public class ItemReg {
                             .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
             
             NETHERITE_AUTO_GUN = registerGunItem("netherite_auto_gun", GunWithMagItem::new,
-                new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(3).recoil(AUTO_GUN_RECOIL)
+                new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(4).recoil(AUTO_GUN_RECOIL)
                     .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
+
+            NETHERITE_TACTICAL_AUTO_GUN = registerGunItem("netherite_tactical_auto_gun", GunWithMagItem::new,
+                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
+                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
 //            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
 //                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
@@ -247,6 +255,12 @@ public class ItemReg {
                             .shootSound(SoundReg.ITEM_RIFLE_SHOOT, SoundReg.ITEM_RIFLE_SHOOT_SILENCED)
                             );
 
+            // Register grenade
+            LOGGER.info("Registering grenade");
+            GRENADE = registerCustomItem("grenade",
+                    s -> new GrenadeItem(GRENADE_POWER, GRENADE_FUSE_TIME, s),
+                    new Item.Properties().stacksTo(16)
+            );
 
             LOGGER.info("Item registration process completed successfully");
         } catch (Exception e) {
