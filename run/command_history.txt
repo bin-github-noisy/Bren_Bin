@@ -38,3 +38,5 @@
 /give Player896 bren:grappling_hook
 /give Player361 bren:grenade
 /give @s bren:grenade
+/give Player926 bren:netherite_big_bore_revolver
+/give @s bren:ar_15

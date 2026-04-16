@@ -75,6 +75,7 @@ public class ItemReg {
     public static Item GRAPPLING_HOOK;
     public static Item GRENADE;
     public static Item NETHERITE_TACTICAL_AUTO_GUN;
+    public static Item NETHERITE_BIG_BORE_REVOLVER;
     private static final float EXPLOSIVE_SPEAR_POWER = 3F;
     private static final float GRENADE_POWER = 4F;
     private static final int GRENADE_FUSE_TIME = 40; // 2 seconds (20 ticks = 1 second)
@@ -200,9 +201,9 @@ public class ItemReg {
                     new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
                             .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
-//            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
-//                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
-//                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
+            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
+                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
+                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
             // 步枪 - 使用SHORT_MAGAZINES标签
             AIR_GUN = registerGunItem("air_gun", AirGunItem::new,
@@ -244,6 +245,9 @@ public class ItemReg {
             NETHERITE_REVOLVER = registerGunItem("netherite_revolver", RevolverItem::new,
                 new GunProperties().rangedDamage(N_REVOLVER_DAMAGE).fireRate(8).recoil(REVOLVER_RECOIL)
                     .shootSound(SoundReg.ITEM_REVOLVER_SHOOT, null));
+            NETHERITE_BIG_BORE_REVOLVER = registerGunItem("netherite_big_bore_revolver", RevolverItem::new,
+                    new GunProperties().rangedDamage(25F).fireRate(6).recoil(3F)
+                            .shootSound(SoundReg.ITEM_SHOTGUN_SHOOT, null));
 
             FLARE_GUN = registerGunItem("flare_gun", FlareGunItem::new,
                     new GunProperties().rangedDamage(REVOLVER_DAMAGE).fireRate(6).recoil(REVOLVER_RECOIL)
