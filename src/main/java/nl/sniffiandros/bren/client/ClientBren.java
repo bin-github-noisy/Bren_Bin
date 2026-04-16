@@ -8,6 +8,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import nl.sniffiandros.bren.client.features.GunBackFeatureRenderer;
 import nl.sniffiandros.bren.client.features.GunHoldingFeatureRenderer;
 import nl.sniffiandros.bren.client.particle.AirRingParticle;
@@ -87,6 +89,9 @@ public class ClientBren implements ClientModInitializer {
     // 检查实体类型是否为人形生物
     private static boolean isHumanoidEntityType(net.minecraft.world.entity.EntityType<?> entityType) {
         // 人形生物包括玩家、村民、僵尸、骷髅等
-        return entityType == net.minecraft.world.entity.EntityType.PLAYER;
-    }
+        // 使用 BuiltInRegistries.ENTITY_TYPE 通过命名空间ID获取实体类型
+        var player = BuiltInRegistries.ENTITY_TYPE.get(Identifier.fromNamespaceAndPath("minecraft", "player"));
+
+
+        return entityType.equals(player);}
 }

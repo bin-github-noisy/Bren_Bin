@@ -64,7 +64,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     private static final float MAX_AIM_PROGRESS = 1.0f;
 
     public PlayerEntityMixin(Level world, BlockPos ignoredPos, float ignoredYaw, GameProfile ignoredGameProfile) {
-        super(EntityType.PLAYER, world);
+        super((EntityType<? extends LivingEntity>) BuiltInRegistries.ENTITY_TYPE.get(Identifier.fromNamespaceAndPath("minecraft", "player")).orElseThrow().value(), world);
     }
 
     // 新增瞄准相关方法实现

@@ -1,4 +1,4 @@
-version:4786
+version:4886
 ao:true
 biomeBlendRadius:2
 chunkSectionFadeInTime:0.75
@@ -13,6 +13,7 @@ fovEffectScale:1.0
 darknessEffectScale:1.0
 glintSpeed:0.5
 glintStrength:0.75
+preferredGraphicsBackend:"default"
 graphicsPreset:"custom"
 prioritizeChunkUpdates:1
 fullscreen:false
@@ -64,7 +65,7 @@ damageTiltStrength:1.0
 highContrast:false
 highContrastBlockOutline:false
 narratorHotkey:true
-resourcePacks:["vanilla","file/ReShaded [v.1.4.2] 26.1.zip"]
+resourcePacks:["vanilla","bren:bren_3d_resources"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:zh_cn

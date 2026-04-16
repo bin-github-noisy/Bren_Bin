@@ -49,8 +49,7 @@ public abstract class FirstPersonItemRendererMixin {
                 boolean leftHanded = displayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_LEFT_HAND;
                 
                 // 调试信息
-                System.out.println("[Bren Debug] First person render triggered: " + displayContext + ", isFirstPerson: " + isFirstPerson + ", leftHanded: " + leftHanded);
-                
+
                 if (isFirstPerson) {
                     // 应用第一人称枪械动画
                     applyFirstPersonGunAnimation(poseStack, entity, stack, leftHanded);
@@ -69,8 +68,7 @@ public abstract class FirstPersonItemRendererMixin {
             boolean reloading = gunState.equals(GunHelper.GunStates.RELOADING);
             
             // 调试信息
-            System.out.println("[Bren Debug] Applying first person gun animation: cooldown=" + cooldownProgress + ", reloading=" + reloading);
-            
+
             // 应用第一人称动画逻辑
             applyFirstPersonAnimationLogic(poseStack, entity, stack, cooldownProgress, reloading, leftHanded);
         }
@@ -114,7 +112,6 @@ public abstract class FirstPersonItemRendererMixin {
      poseStack.mulPose(com.mojang.math.Axis.ZP.rotationDegrees(zRotation));
         poseStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(xRotation));
         
-        System.out.println("[Bren Debug] First person animation applied successfully");
     }
     
     @Unique
