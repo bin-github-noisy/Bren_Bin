@@ -1,0 +1,30 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 2203,
+      "minecraft:time_since_rest": 1371,
+      "minecraft:walk_one_cm": 1185,
+      "minecraft:total_world_time": 1474,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 663,
+      "minecraft:mob_kills": 2,
+      "minecraft:play_time": 1371,
+      "minecraft:jump": 6,
+      "minecraft:time_since_death": 1371,
+      "minecraft:drop": 2
+    },
+    "minecraft:picked_up": {
+      "bren:auto_gun": 1,
+      "bren:shotgun": 1
+    },
+    "minecraft:dropped": {
+      "bren:auto_gun": 1,
+      "bren:shotgun": 1
+    },
+    "minecraft:killed": {
+      "minecraft:skeleton": 1,
+      "minecraft:cow": 1
+    }
+  },
+  "DataVersion": 4886
+}
