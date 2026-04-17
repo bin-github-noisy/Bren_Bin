@@ -57,6 +57,11 @@ public class Bren implements ModInitializer {
 				container,
 				ResourcePackActivationType.NORMAL  // 玩家可以手动关闭
 		);
+		boolean added2 = ResourceManagerHelper.registerBuiltinResourcePack(
+				Identifier.fromNamespaceAndPath(MODID, "bren_3d_resources_2"), // 资源包ID
+				container,
+				ResourcePackActivationType.NORMAL  // 玩家可以手动关闭
+		);
 		AttributeReg.reg();
 		// 注册数据组件类型（必须在物品注册之前）
 		DataComponentReg.register();

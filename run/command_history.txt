@@ -40,3 +40,5 @@
 /give @s bren:grenade
 /give Player926 bren:netherite_big_bore_revolver
 /give @s bren:ar_15
+/time set minecraft:day
+/give Player983 bren:netherite_big_bore_revolver
