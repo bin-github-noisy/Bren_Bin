@@ -201,10 +201,6 @@ public class ItemReg {
                     new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
                             .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
 
-            AR_15 = registerGunItem("ar_15", GunWithMagItem::new,
-                    new GunProperties().rangedDamage(N_AUTO_GUN_DAMAGE).fireRate(2).recoil(AUTO_GUN_RECOIL)
-                            .shootSound(SoundReg.ITEM_AUTO_GUN_SHOOT, SoundReg.ITEM_AUTO_GUN_SHOOT_SILENCED));
-
             // 步枪 - 使用SHORT_MAGAZINES标签
             AIR_GUN = registerGunItem("air_gun", AirGunItem::new,
                     new GunProperties().rangedDamage(7f).fireRate(6).recoil(MACHINE_GUN_RECOIL)
