@@ -526,7 +526,7 @@
 		{
 			"name": "extended_barrel",
 			"from": [7.90162, 14.10203, 0.13659],
-			"to": [8.37662, 14.57703, 8.51159],
+			"to": [8.40162, 14.60203, 8.51159],
 			"rotation": {"angle": 45, "axis": "z", "origin": [7.66412, 14.33953, 3.03372]},
 			"faces": {
 				"north": {"uv": [9.5, 12.5, 9.75, 12.75], "texture": "#0"},
@@ -539,16 +539,16 @@
 		}
 	],
 	"display": {
-		"gui": {
-			"rotation": [74.02, -53.34, 91],
-			"translation": [8.25, -6.5, 0],
-			"scale": [1.1, 1.1, 1.1]
-		},
 		"thirdperson_righthand": {
 			"translation": [0, -5.25, -3.75]
 		},
 		"firstperson_righthand": {
 			"translation": [0, -2.25, 0]
+		},
+		"gui": {
+			"rotation": [74.02, -53.34, 91],
+			"translation": [8.25, -6.5, 0],
+			"scale": [1.1, 1.1, 1.1]
 		}
 	},
 	"groups": [
