@@ -8,7 +8,7 @@
     "P": "#minecraft:logs"
   },
   "pattern": [
-    "TF ",
+    "TFM",
     "TFP",
     "  P"
   ],
