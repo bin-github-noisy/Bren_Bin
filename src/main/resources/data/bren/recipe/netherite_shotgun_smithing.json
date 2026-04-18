@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smithing_transform",
   "addition": "minecraft:netherite_ingot",
-  "base": "bren:netherite_double_barrels_shotgun",
+  "base": "bren:shotgun",
   "result": {
     "id": "bren:netherite_shotgun",
     "count": 1

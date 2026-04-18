@@ -1,0 +1,30 @@
+{
+  "stats": {
+    "minecraft:dropped": {
+      "minecraft:iron_ingot": 2,
+      "bren:metal_tube": 2,
+      "minecraft:oak_log": 2
+    },
+    "minecraft:custom": {
+      "minecraft:interact_with_crafting_table": 2,
+      "minecraft:sprint_one_cm": 58,
+      "minecraft:time_since_rest": 1130,
+      "minecraft:walk_one_cm": 100,
+      "minecraft:total_world_time": 1138,
+      "minecraft:leave_game": 1,
+      "minecraft:play_time": 1130,
+      "minecraft:jump": 1,
+      "minecraft:time_since_death": 1130,
+      "minecraft:drop": 3
+    },
+    "minecraft:used": {
+      "minecraft:crafting_table": 1
+    },
+    "minecraft:picked_up": {
+      "bren:metal_tube": 2,
+      "minecraft:oak_log": 2,
+      "minecraft:iron_ingot": 2
+    }
+  },
+  "DataVersion": 4786
+}
