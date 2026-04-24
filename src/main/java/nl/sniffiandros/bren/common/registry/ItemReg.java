@@ -243,7 +243,7 @@ public class ItemReg {
             );
 
             AUTO_PISTOL = registerGunItem("auto_pistol", s -> new GunWithMagItem(s, TagReg.SHORT_MAGAZINES),
-                    new GunProperties().rangedDamage(9F).fireRate(5).recoil(RIFLE_RECOIL)
+                    new GunProperties().rangedDamage(9F).fireRate(4).recoil(RIFLE_RECOIL)
                             .shootSound(SoundReg.ITEM_RIFLE_SHOOT, SoundReg.ITEM_RIFLE_SHOOT_SILENCED)
                             );
 
