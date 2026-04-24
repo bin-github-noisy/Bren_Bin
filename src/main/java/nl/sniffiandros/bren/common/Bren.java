@@ -52,11 +52,6 @@ public class Bren implements ModInitializer {
 		// 第一个参数: 资源包的 ID (唯一标识)
 		// 第二个参数: 模组容器
 		// 第三个参数: 资源包激活类型 (ALWAYS_ENABLED 强制启用, DEFAULT_ENABLED 默认启用但允许关闭)
-		boolean added = ResourceManagerHelper.registerBuiltinResourcePack(
-				Identifier.fromNamespaceAndPath(MODID, "bren_3d_resources"), // 资源包ID
-				container,
-				ResourcePackActivationType.NORMAL  // 玩家可以手动关闭
-		);
 		boolean added2 = ResourceManagerHelper.registerBuiltinResourcePack(
 				Identifier.fromNamespaceAndPath(MODID, "bren_3d_resources_2"), // 资源包ID
 				container,
