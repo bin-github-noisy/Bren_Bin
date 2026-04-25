@@ -1,0 +1,26 @@
+{
+  "stats": {
+    "minecraft:picked_up": {
+      "minecraft:porkchop": 3,
+      "bren:netherite_double_barrels_shotgun": 1
+    },
+    "minecraft:killed": {
+      "minecraft:pig": 1
+    },
+    "minecraft:custom": {
+      "minecraft:time_since_rest": 250,
+      "minecraft:walk_one_cm": 1492,
+      "minecraft:total_world_time": 346,
+      "minecraft:leave_game": 1,
+      "minecraft:mob_kills": 1,
+      "minecraft:play_time": 250,
+      "minecraft:jump": 4,
+      "minecraft:time_since_death": 250,
+      "minecraft:drop": 2
+    },
+    "minecraft:dropped": {
+      "bren:netherite_double_barrels_shotgun": 2
+    }
+  },
+  "DataVersion": 4786
+}

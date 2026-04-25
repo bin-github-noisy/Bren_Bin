@@ -1,0 +1,38 @@
+{
+  "stats": {
+    "minecraft:killed": {
+      "minecraft:chicken": 2,
+      "minecraft:pig": 1,
+      "minecraft:sheep": 1,
+      "minecraft:spider": 1
+    },
+    "minecraft:picked_up": {
+      "minecraft:porkchop": 2,
+      "minecraft:white_wool": 1,
+      "minecraft:feather": 2,
+      "minecraft:chicken": 2,
+      "bren:netherite_double_barrels_shotgun": 2,
+      "minecraft:mutton": 2,
+      "minecraft:spider_eye": 1,
+      "bren:shotgun": 1
+    },
+    "minecraft:dropped": {
+      "bren:netherite_double_barrels_shotgun": 2,
+      "bren:shotgun": 1
+    },
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 3489,
+      "minecraft:time_since_rest": 1493,
+      "minecraft:walk_one_cm": 6257,
+      "minecraft:total_world_time": 1689,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 5541,
+      "minecraft:mob_kills": 5,
+      "minecraft:play_time": 1493,
+      "minecraft:jump": 34,
+      "minecraft:time_since_death": 1493,
+      "minecraft:drop": 3
+    }
+  },
+  "DataVersion": 4786
+}

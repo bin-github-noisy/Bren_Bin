@@ -1,0 +1,20 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 803,
+      "minecraft:time_since_rest": 433,
+      "minecraft:walk_one_cm": 658,
+      "minecraft:total_world_time": 505,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 28,
+      "minecraft:mob_kills": 1,
+      "minecraft:play_time": 433,
+      "minecraft:jump": 2,
+      "minecraft:time_since_death": 433
+    },
+    "minecraft:killed": {
+      "minecraft:chicken": 1
+    }
+  },
+  "DataVersion": 4786
+}
