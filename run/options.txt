@@ -38,7 +38,7 @@ vignette:true
 weatherRadius:10
 autoJump:false
 rotateWithMinecart:false
-operatorItemsTab:false
+operatorItemsTab:true
 autoSuggestions:true
 chatColors:true
 chatLinks:true

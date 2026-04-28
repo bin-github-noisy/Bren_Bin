@@ -44,3 +44,6 @@
 /give Player983 bren:netherite_big_bore_revolver
 /time set minecraft:day
 /recipe give Player69 *
+/place jigsaw bren:gunpowder_town
+/place jigsaw bren:gunpowder_town 100 1 ~ ~ ~
+/place jigsaw bren:gunpowder_town house_1 1 ~ ~ ~
