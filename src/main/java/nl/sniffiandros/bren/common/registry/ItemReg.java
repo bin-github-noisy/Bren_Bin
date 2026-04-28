@@ -19,22 +19,22 @@ public class ItemReg {
     private static final Logger LOGGER = LoggerFactory.getLogger(ItemReg.class);
 
     // Machine Gun
-    public static final float MACHINE_GUN_RECOIL = 1.1f;
+    public static final float MACHINE_GUN_RECOIL = 2f;
     public static final float MACHINE_GUN_DAMAGE = MConfig.machineGunDamage.get();
     public static final float N_MACHINE_GUN_DAMAGE = MConfig.netheriteMachineGunDamage.get();
 
     // Auto-Gun
-    public static final float AUTO_GUN_RECOIL = 1.2f;
+    public static final float AUTO_GUN_RECOIL = 2.5f;
     public static final float AUTO_GUN_DAMAGE = MConfig.autoGunDamage.get();
     public static final float N_AUTO_GUN_DAMAGE = MConfig.netheriteAutoGunDamage.get();
 
     // Rifle
-    public static final float RIFLE_RECOIL = 2.2f;
+    public static final float RIFLE_RECOIL = 3f;
     public static final float RIFLE_DAMAGE = MConfig.rifleDamage.get();
     public static final float N_RIFLE_DAMAGE = MConfig.netheriteRifleDamage.get();
 
     // Shotgun
-    public static final float SHOTGUN_RECOIL = 2.5f;
+    public static final float SHOTGUN_RECOIL = 3.5f;
     public static final float SHOTGUN_DAMAGE = MConfig.shotgunDamage.get();
     public static final float N_SHOTGUN_DAMAGE = MConfig.netheriteShotgunDamage.get();
 

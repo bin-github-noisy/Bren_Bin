@@ -11,7 +11,7 @@ public class RecoilSys {
     private static float recoil = 0;
     private static int cameraRecoilProgress = 0;
     private static int lastCameraRecoilProgress = 0;
-    
+
     // 添加一个常量来控制枪口上抬的额外角度
     private static final float MUZZLE_LIFT_MULTIPLIER = 1.2f; // 增加20%的上抬角度
 
@@ -45,16 +45,12 @@ public class RecoilSys {
     public static void tick(Minecraft client) {
         lastCameraRecoilProgress = cameraRecoilProgress;
         cameraRecoilProgress = Math.max(0, --cameraRecoilProgress);
+
+        // 在tick中应用后坐力效果
+        render(client, 1.0f);
     }
 
-    // 修改registerRenderCallback方法，使用Minecraft原生的渲染系统
     public static void registerRenderCallback() {
-        // 在新的Minecraft版本中，后坐力效果应该通过其他方式实现
-        // 例如：通过GameRenderer的Mixin或直接修改玩家视角
-        // 暂时注释掉HUD渲染回调，避免编译错误
-        // HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
-        //     Minecraft client = Minecraft.getInstance();
-        //     render(client, tickDelta);
-        // });
+        // 不需要注册HUD回调，后坐力效果在tick中应用
     }
 }

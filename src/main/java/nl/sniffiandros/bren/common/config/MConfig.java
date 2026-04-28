@@ -38,7 +38,7 @@ public class MConfig {
             "Breaks glass on bullet impact");
 
     @Entry()
-    public static final ConfigHelper.FloatValue recoilMultiplier = new ConfigHelper.FloatValue(0.5f,
+    public static final ConfigHelper.FloatValue recoilMultiplier = new ConfigHelper.FloatValue(2f,
             "The recoil multiplier, so 0 is no recoil");
 
     @Entry()
