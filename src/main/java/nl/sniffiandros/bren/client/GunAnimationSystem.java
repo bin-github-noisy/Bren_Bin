@@ -25,15 +25,12 @@ public class GunAnimationSystem {
             ItemStack mainHandItem = player.getMainHandItem();
             
             if (!mainHandItem.isEmpty() && mainHandItem.getItem() instanceof GunItem gunItem) {
-                // 获取冷却进度
                 ItemCooldowns cooldownManager = player.getCooldowns();
                 float cooldownProgress = cooldownManager.getCooldownPercent(mainHandItem, 0.0F);
                 
-                // 获取枪械状态
                 GunHelper.GunStates gunState = gunUser.bren_1_21_1$getGunState();
                 int gunTicks = gunUser.bren_1_21_1$getGunTicks();
                 
-                // 根据持枪姿势应用不同的动画
                 switch (gunItem.holdingPose()) {
                     case TWO_ARMS -> 
                         applyTwoArmsAnimation(leftArm, rightArm, head, entity, cooldownProgress, gunTicks, gunState);
@@ -46,7 +43,36 @@ public class GunAnimationSystem {
         }
     }
 
+    public static void applyGunAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head, ModelPart hat,
+                                        HumanoidRenderState state, LivingEntity entity) {
+        if (entity instanceof IGunUser gunUser && entity instanceof Player player) {
+            ItemStack mainHandItem = player.getMainHandItem();
+            
+            if (!mainHandItem.isEmpty() && mainHandItem.getItem() instanceof GunItem gunItem) {
+                ItemCooldowns cooldownManager = player.getCooldowns();
+                float cooldownProgress = cooldownManager.getCooldownPercent(mainHandItem, 0.0F);
+                
+                GunHelper.GunStates gunState = gunUser.bren_1_21_1$getGunState();
+                int gunTicks = gunUser.bren_1_21_1$getGunTicks();
+                
+                switch (gunItem.holdingPose()) {
+                    case TWO_ARMS -> 
+                        applyTwoArmsAnimation(leftArm, rightArm, head, hat, entity, cooldownProgress, gunTicks, gunState);
+                    case ONE_ARM -> 
+                        applyOneArmAnimation(leftArm, rightArm, head, hat, entity, cooldownProgress, gunTicks, gunState);
+                    case REVOLVER -> 
+                        applyRevolverAnimation(leftArm, rightArm, head, hat, entity, cooldownProgress, gunTicks, gunState);
+                }
+            }
+        }
+    }
+
     public static void applyTwoArmsAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
+                                             LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+        applyTwoArmsAnimation(leftArm, rightArm, head, null, entity, cooldownProgress, gunTicks, gunState);
+    }
+
+    public static void applyTwoArmsAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head, ModelPart hat,
                                              LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
         boolean isLeftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
         ModelPart mainArm = isLeftHanded ? leftArm : rightArm;
@@ -84,10 +110,15 @@ public class GunAnimationSystem {
 
         // 头部动画 - 相对于躯干
         head.yRot = (y - bodyYaw);
-        head.xRot = p;
+        head.xRot = p - f3/2;
     }
 
     public static void applyOneArmAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
+                                           LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+        applyOneArmAnimation(leftArm, rightArm, head, null, entity, cooldownProgress, gunTicks, gunState);
+    }
+
+    public static void applyOneArmAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head, ModelPart hat,
                                            LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
         boolean isLeftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
         ModelPart arm = isLeftHanded ? leftArm : rightArm;
@@ -98,9 +129,17 @@ public class GunAnimationSystem {
 
         arm.yRot = bodyYaw;
         arm.xRot = p - h_pi;
+        
+        head.yRot = 0;
+        head.xRot = p;
     }
 
     public static void applyRevolverAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
+                                             LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+        applyRevolverAnimation(leftArm, rightArm, head, null, entity, cooldownProgress, gunTicks, gunState);
+    }
+
+    public static void applyRevolverAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head, ModelPart hat,
                                              LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
         boolean isLeftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
         ModelPart arm = isLeftHanded ? leftArm : rightArm;
@@ -128,6 +167,6 @@ public class GunAnimationSystem {
         arm.yRot = (y - bodyYaw) + rotationY;
         
         head.yRot = (y - bodyYaw);
-        head.xRot = p;
+        head.xRot = p - sin;
     }
 }

@@ -65,17 +65,11 @@ public abstract class BipedEntityModelMixin<T extends LivingEntity> implements A
                     GunHelper.GunStates gunState = gunUser.bren_1_21_1$getGunState();
                     int gunTicks = gunUser.bren_1_21_1$getGunTicks();
 
-                    // 使用新的动画系统应用动画
+                    // 使用新的动画系统应用动画，同时同步头部和帽子
                     GunAnimationSystem.applyGunAnimation(
-                        this.leftArm, this.rightArm, this.getHead(), 
+                        this.leftArm, this.rightArm, this.getHead(), this.hat,
                         state, player
                     );
-
-                    // 修复：直接设置帽子部件的角度，而不是使用copyTransform方法
-                    // 在Minecraft 1.21.11中，copyTransform方法可能已被移除
-                    this.hat.yRot = this.getHead().yRot;
-                    this.hat.xRot = this.getHead().xRot;
-                    this.hat.zRot = this.getHead().zRot;
                 }
             }
         }
