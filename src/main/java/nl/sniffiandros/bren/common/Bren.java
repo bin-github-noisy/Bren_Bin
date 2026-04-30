@@ -2,7 +2,6 @@ package nl.sniffiandros.bren.common;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
-import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -15,7 +14,6 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.player.Player;
@@ -37,8 +35,8 @@ public class Bren implements ModInitializer {
 	public static final ResourceKey<CreativeModeTab> BREN_TAB = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(MODID, "bren_tab"));
 
 	public static final EntityType<@org.jetbrains.annotations.NotNull BulletEntity> BULLET = Registry.register(BuiltInRegistries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MODID,
-			"bullet"), FabricEntityTypeBuilder.<BulletEntity>create(MobCategory.MISC, BulletEntity::new).trackRangeChunks(10)
-			.dimensions(EntityDimensions.fixed(0.35f, 0.35f)).disableSaving().build(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MODID, "bullet"))));
+			"bullet"), EntityType.Builder.<BulletEntity>of(BulletEntity::new, MobCategory.MISC).clientTrackingRange(10)
+			.sized(0.35f, 0.35f).noSave().build(net.minecraft.resources.ResourceKey.create(net.minecraft.core.registries.Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MODID, "bullet"))));
 
 	@Override
 	public void onInitialize() {
