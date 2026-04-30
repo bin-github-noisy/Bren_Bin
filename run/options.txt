@@ -64,7 +64,7 @@ damageTiltStrength:1.0
 highContrast:false
 highContrastBlockOutline:false
 narratorHotkey:true
-resourcePacks:["vanilla","file/ReShaded [v.1.4.2] 26.1.zip","bren:bren_3d_resources_2"]
+resourcePacks:["vanilla","bren:bren_3d_resources_2"]
 incompatibleResourcePacks:[]
 lastServer:
 lang:zh_cn

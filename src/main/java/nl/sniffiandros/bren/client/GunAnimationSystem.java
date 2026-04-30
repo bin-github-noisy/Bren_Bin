@@ -45,7 +45,6 @@ public class GunAnimationSystem {
             }
         }
     }
-
     public static void applyTwoArmsAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
                                              LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
         boolean isLeftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
@@ -83,47 +82,64 @@ public class GunAnimationSystem {
         secondaryArm.yRot = (isLeftHanded ? -1.090831F - (y - bodyYaw) : 1.090831F + (y - bodyYaw)) + (p/2) * l + f3/3;
 
         // 头部动画 - 相对于躯干
-        head.yRot = (y - bodyYaw) - 0.7853982F * l;
-        head.xRot = p; // 头部跟随实体俯仰角度
+        head.yRot = (y - bodyYaw);
+        head.xRot = p - f3/2;
     }
 
     public static void applyOneArmAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
-                                           LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+                                            LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+        applyOneArmAnimation(leftArm, rightArm, head, null, entity, cooldownProgress, gunTicks, gunState);
+    }
+
+    public static void applyOneArmAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head, ModelPart hat,
+                                            LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
         boolean isLeftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
         ModelPart arm = isLeftHanded ? leftArm : rightArm;
-        
+
         float h_pi = 1.570796F;
         float p = entity.getXRot() * 0.01745329F;
-        float y = entity.getYHeadRot() * 0.01745329F;
+        float bodyYaw = entity.getVisualRotationYInDegrees() * 0.01745329F;
 
-        arm.yRot = y;
+        arm.yRot = bodyYaw;
         arm.xRot = p - h_pi;
+
+        head.yRot = 0;
+        head.xRot = p;
     }
 
     public static void applyRevolverAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
-                                             LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+                                              LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
+        applyRevolverAnimation(leftArm, rightArm, head, null, entity, cooldownProgress, gunTicks, gunState);
+    }
+
+    public static void applyRevolverAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head, ModelPart hat,
+                                              LivingEntity entity, float cooldownProgress, int gunTicks, GunHelper.GunStates gunState) {
         boolean isLeftHanded = entity.getMainArm().equals(HumanoidArm.LEFT);
         ModelPart arm = isLeftHanded ? leftArm : rightArm;
         boolean reloading = gunState.equals(GunHelper.GunStates.RELOADING);
-        
+
         float rotationX;
         float rotationY;
         float animationFactor = 0;
         float f1 = 1.570796F;
-        
+
         if (entity instanceof Player player) {
             animationFactor = player.getCooldowns().getCooldownPercent(player.getMainHandItem(), 0.0F);
         }
-        
+
         float sin = reloading ? (float) Math.sin((animationFactor*2 - 0.5)*Math.PI) * 0.5F + 0.5F : 0;
-        
+
         rotationY = (float) (Math.cos(animationFactor*15)*0.08726646);
         rotationX = (float) (Math.sin(animationFactor*15)*0.08726646) - sin;
-        
+
         float p = entity.getXRot() * 0.01745329F;
         float y = entity.getYHeadRot() * 0.01745329F;
-        
+        float bodyYaw = entity.getVisualRotationYInDegrees() * 0.01745329F;
+
         arm.xRot = p - f1 + rotationX;
-        arm.yRot = y + rotationY;
+        arm.yRot = (y - bodyYaw) + rotationY;
+
+        head.yRot = (y - bodyYaw);
+        head.xRot = p - sin;
     }
 }
