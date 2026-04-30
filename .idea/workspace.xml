@@ -8,15 +8,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="new gun">
-      <change beforePath="$PROJECT_DIR$/.idea/MarsCodeWorkspaceAppSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MarsCodeWorkspaceAppSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Bren_-_26.1.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Bren_-_26.1.main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/Bren_-_26.1.test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/Bren_-_26.1.test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/features/GunBackFeatureRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/features/GunBackFeatureRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/flare_gun.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/flare_gun.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/GunAnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/GunAnimationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/ItemRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/ItemRendererMixin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -356,7 +350,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777356354168</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="new gun">
+      <option name="closed" value="true" />
+      <created>1777525900995</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1777525900995</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

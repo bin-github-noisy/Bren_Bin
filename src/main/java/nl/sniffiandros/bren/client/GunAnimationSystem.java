@@ -83,8 +83,8 @@ public class GunAnimationSystem {
         secondaryArm.yRot = (isLeftHanded ? -1.090831F - (y - bodyYaw) : 1.090831F + (y - bodyYaw)) + (p/2) * l + f3/3;
 
         // 头部动画 - 相对于躯干
-        head.yRot = (y - bodyYaw) - 0.7853982F * l;
-        head.xRot = p; // 头部跟随实体俯仰角度
+        head.yRot = (y - bodyYaw);
+        head.xRot = p;
     }
 
     public static void applyOneArmAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
@@ -94,9 +94,9 @@ public class GunAnimationSystem {
         
         float h_pi = 1.570796F;
         float p = entity.getXRot() * 0.01745329F;
-        float y = entity.getYHeadRot() * 0.01745329F;
+        float bodyYaw = entity.getVisualRotationYInDegrees() * 0.01745329F;
 
-        arm.yRot = y;
+        arm.yRot = bodyYaw;
         arm.xRot = p - h_pi;
     }
 
@@ -122,8 +122,12 @@ public class GunAnimationSystem {
         
         float p = entity.getXRot() * 0.01745329F;
         float y = entity.getYHeadRot() * 0.01745329F;
+        float bodyYaw = entity.getVisualRotationYInDegrees() * 0.01745329F;
         
         arm.xRot = p - f1 + rotationX;
-        arm.yRot = y + rotationY;
+        arm.yRot = (y - bodyYaw) + rotationY;
+        
+        head.yRot = (y - bodyYaw);
+        head.xRot = p;
     }
 }

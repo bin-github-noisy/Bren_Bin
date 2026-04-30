@@ -330,15 +330,22 @@ public abstract class ItemRendererMixin {
                     org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
                     
                     if (localTransform != null) {
-                        // 应用第三人称动画变换
+                        // 修复：增加向前偏移量，让枪械远离身体
+                        // 关键修改：将Z轴偏移从负数改为正数，增加向前的距离
                         float yRotation = leftHanded ? 10 : -10;
                         float xRotation = f2 * 30 + 45;
                         
+                        // 增加向前偏移，确保枪械远离身体
+                        float forwardOffset = 0.4F; // 向前偏移，远离身体
+                        float sideOffset = leftHanded ? -0.1F : 0.1F; // 向外侧偏移
+                        float yOffset = -f2 / 4 + 0.25F;
+                        
                         localTransform.rotateY((float) Math.toRadians(yRotation));
                         localTransform.rotateX((float) Math.toRadians(xRotation));
-                        localTransform.translate(0, -f2 / 4 + 0.25F, f2 / 8 - 0.25F);
+                        // 修改：增加向前和向外侧偏移，防止枪械嵌入身体
+                        localTransform.translate(sideOffset, yOffset, forwardOffset);
                         
-                        System.out.println("[Bren Debug] Third person animation applied successfully via localTransform");
+                        System.out.println("[Bren Debug] Third person animation applied successfully via localTransform with offset fix");
                         return; // 如果成功，直接返回
                     }
                 }
@@ -366,12 +373,15 @@ public abstract class ItemRendererMixin {
                     org.joml.Matrix4f localTransform = (org.joml.Matrix4f) localTransformField.get(firstLayer);
                     
                     if (localTransform != null) {
-                        // 应用简单的动画变换
+                        // 修复：增加向前偏移量，让枪械远离身体
                         float simpleRotation = leftHanded ? 15 : -15;
-                        localTransform.rotateY((float) Math.toRadians(simpleRotation));
-                        localTransform.translate(0, 0.1F, 0.1F);
+                        float sideOffset = leftHanded ? -0.15F : 0.15F; // 向外侧偏移
+                        float forwardOffset = 0.5F; // 向前偏移，远离身体
                         
-                        System.out.println("[Bren Debug] Simple third person animation applied successfully");
+                        localTransform.rotateY((float) Math.toRadians(simpleRotation));
+                        localTransform.translate(sideOffset, 0.1F, forwardOffset);
+                        
+                        System.out.println("[Bren Debug] Simple third person animation applied successfully with offset fix");
                         return;
                     }
                 }
