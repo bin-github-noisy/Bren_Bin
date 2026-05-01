@@ -205,7 +205,7 @@
       <recent name="nl.sniffiandros.bren.common.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Bren - 26.1 [runClient]">
+  <component name="RunManager" selected="Gradle.Bren - 26.1 [build]">
     <configuration name="Bren - 26.1 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -274,9 +274,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
-        <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
         <item itemvalue="Gradle.Bren - 26.1 [build]" />
+        <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
+        <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
       </list>
