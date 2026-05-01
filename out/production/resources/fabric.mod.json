@@ -1,0 +1,51 @@
+{
+	"schemaVersion": 1,
+	"id": "bren",
+	"version": "${version}",
+	"name": "Bren Refabriced",
+	"description": "EVER WANTED TO START A WAR!! Or just kill mobs better... ANYWAY THIS IS THE MOD FOR YOU!",
+	"authors": [
+		"Sniffiandros!","Bin!"
+	],
+	"contact": {
+		"homepage": ""
+	},
+	"license": "MIT",
+	"icon": "assets/bren/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"nl.sniffiandros.bren.common.Bren"
+		],
+		"client": [
+			"nl.sniffiandros.bren.client.ClientBren"
+		]
+	},
+	"mixins": [
+		"bren.mixins.json"
+	],
+	"custom": {
+		"fabric-resource-loader-v0": {
+			"includes": [
+				{
+					"id": "bren_3d_resources",
+					"name": "Bren 3D Resources",
+					"description": "3D resources for Bren guns",
+					"path": "resourcepacks/bren_3d_resources"
+				},
+				{
+					"id": "bren_3d_resources_2",
+					"name": "Bren 3D Resources",
+					"description": "Bren Gun Mod 3D Resource Pack (Inspired by Scorched Guns 2)",
+					"path": "resourcepacks/bren_3d_resources_2"
+				}
+			]
+		}
+	},
+	"depends": {
+		"fabricloader": ">=0.18.06",
+		"minecraft": ">=26.1",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}

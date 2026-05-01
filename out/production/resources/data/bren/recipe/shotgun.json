@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "M": "bren:auto_loader_contraption",
+    "T": "bren:metal_tube",
+    "F": "minecraft:iron_ingot",
+    "P": "#minecraft:logs"
+  },
+  "pattern": [
+    "TFM",
+    "TFP",
+    "  P"
+  ],
+  "result": {
+    "id": "bren:shotgun",
+    "count": 1
+  },
+  "show_notification": true
+}
