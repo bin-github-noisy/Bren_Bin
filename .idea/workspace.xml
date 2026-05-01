@@ -8,50 +8,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="new gun">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/bren/worldgen/structure/gunpowder_town.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/bren/worldgen/structure_set/gunpowder_town.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/bren/worldgen/template_pool/house_1.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/data/bren/worldgen/template_pool/road_1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2026_4_16_18_41_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_12_22_46_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/debug-1.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/debug-2.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/debug-3.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/debug-4.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/debug-5.log.gz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/level.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/level.dat_old" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.-1.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.-1.-11.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.-1.-12.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.-1.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.-1.01.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.-1.02.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.0.-1.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.0.-11.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.0.-12.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.0.0.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.0.01.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/r.0.02.mca" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/raids.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/raids1.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/raids2.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/random_sequences.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/weather.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行签出之前于_2026_4_16_19_20_取消提交了更改_[更改]/world_clocks.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/command_history.txt" beforeDir="false" afterPath="$PROJECT_DIR$/run/command_history.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-1.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-1.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-2.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-2.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-3.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-3.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-4.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-4.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-5.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-5.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/options.txt" beforeDir="false" afterPath="$PROJECT_DIR$/run/options.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/usercache.json" beforeDir="false" afterPath="$PROJECT_DIR$/run/usercache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/renderer/RecoilSys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/renderer/RecoilSys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/bren/structure/abandoned_factory.nbt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/GunAnimationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/GunAnimationSystem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -386,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776490875488</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="new gun">
+      <option name="closed" value="true" />
+      <created>1777614209395</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1777614209395</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

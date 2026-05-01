@@ -111,6 +111,12 @@ public class GunAnimationSystem {
         // 头部动画 - 相对于躯干
         head.yRot = (y - bodyYaw);
         head.xRot = p - f3/2;
+        
+        // 帽子层动画 - 与头部同步
+        if (hat != null) {
+            hat.yRot = (y - bodyYaw);
+            hat.xRot = p - f3/2;
+        }
     }
 
     public static void applyOneArmAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
@@ -132,6 +138,12 @@ public class GunAnimationSystem {
 
         head.yRot = 0;
         head.xRot = p;
+        
+        // 帽子层动画 - 与头部同步
+        if (hat != null) {
+            hat.yRot = 0;
+            hat.xRot = p;
+        }
     }
 
     public static void applyRevolverAnimation(ModelPart leftArm, ModelPart rightArm, ModelPart head,
@@ -168,5 +180,11 @@ public class GunAnimationSystem {
 
         head.yRot = (y - bodyYaw);
         head.xRot = p - sin;
+        
+        // 帽子层动画 - 与头部同步
+        if (hat != null) {
+            hat.yRot = (y - bodyYaw);
+            hat.xRot = p - sin;
+        }
     }
 }
