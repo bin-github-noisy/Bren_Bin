@@ -1,8 +1,5 @@
 package nl.sniffiandros.bren.common.registry.custom;
 
-import nl.sniffiandros.bren.common.Bren;
-
-import java.util.List;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -11,6 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.CustomData;
+import nl.sniffiandros.bren.common.Bren;
+import org.jetbrains.annotations.NotNull;
 
 public class MagazineItem extends Item {
     private final int capacity;
@@ -52,7 +51,7 @@ public class MagazineItem extends Item {
     }
 
     @Override
-    public boolean isBarVisible(ItemStack stack) {
+    public boolean isBarVisible(@NotNull ItemStack stack) {
         return getContents(stack) > 0;
     }
 

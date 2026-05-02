@@ -124,13 +124,13 @@ public class GunItem extends Item {
         // 根据弹药比例改变颜色
         if (ratio > 0.5) {
             // 绿色到黄色的渐变
-            return 0x00FF00; // 绿色
+            return 0xFFAE00; // 绿色
         } else if (ratio > 0.25) {
             // 黄色
-            return 0xFFFF00; // 黄色
+            return 0xFFAE00; // 黄色
         } else {
             // 红色
-            return 0xFF0000; // 红色
+            return 0xFFAE00; // 红色
         }
     }
 
