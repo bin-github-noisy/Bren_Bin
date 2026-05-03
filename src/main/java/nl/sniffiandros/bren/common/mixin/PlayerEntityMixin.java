@@ -92,8 +92,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     public void blackPowder$gunScopes(CallbackInfoReturnable<Boolean> cir) {
         ItemStack itemStack = this.getMainHandItem();
         if (itemStack.getItem() instanceof GunItem gunItem) {
-            // 检查枪械是否支持瞄准，并且当前正在瞄准且进度足够高
-            if (gunItem.supportsAiming() && this.bren_1_21_1$isAiming()) {
+            if (gunItem.supportsAiming() && this.bren_1_21_1$isAiming() && this.bren_1_21_1$getAimProgress() > 0.7f) {
+                // 直接使用原版望远镜逻辑，当瞄准进度足够高时返回true
                 cir.setReturnValue(true);
             }
         }
@@ -124,9 +124,10 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         }
         
         // 当瞄准进度足够高时，调用望远镜mixin功能
-        if (this.aimProgress > 0.7f && this.isAiming) {
-            activateSpyglassZoom(player);
-        }
+        // 注释掉此行以避免与自定义FOV冲突
+        // if (this.aimProgress > 0.7f && this.isAiming) {
+        //     activateSpyglassZoom(player);
+        // }
     }
     
     @Unique
