@@ -9,9 +9,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="new gun">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/GameRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/GameRendererMixin.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,7 +162,7 @@
       <recent name="nl.sniffiandros.bren.common.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Bren - 26.1 [runClient]">
+  <component name="RunManager" selected="Gradle.Bren - 26.1 [build]">
     <configuration name="Bren - 26.1 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -234,9 +231,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
-        <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
       </list>
@@ -354,7 +351,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777614209395</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="new gun">
+      <option name="closed" value="true" />
+      <created>1777797462244</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1777797462244</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
