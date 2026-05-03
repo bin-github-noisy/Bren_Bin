@@ -64,7 +64,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     private static final float MAX_AIM_PROGRESS = 1.0f;
 
     public PlayerEntityMixin(Level world, BlockPos ignoredPos, float ignoredYaw, GameProfile ignoredGameProfile) {
-        super(EntityType.PLAYER, world);
+        super((EntityType<? extends LivingEntity>) BuiltInRegistries.ENTITY_TYPE.get(Identifier.fromNamespaceAndPath("minecraft", "player")).orElseThrow().value(), world);
     }
 
     // 新增瞄准相关方法实现
@@ -72,17 +72,17 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     public boolean bren_1_21_1$isAiming() {
         return this.isAiming;
     }
-    
+
     @Override
     public void bren_1_21_1$setAiming(boolean aiming) {
         this.isAiming = aiming;
     }
-    
+
     @Override
     public float bren_1_21_1$getAimProgress() {
         return this.aimProgress;
     }
-    
+
     @Override
     public void bren_1_21_1$setAimProgress(float progress) {
         this.aimProgress = Math.max(0.0f, Math.min(1.0f, progress));
@@ -92,8 +92,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     public void blackPowder$gunScopes(CallbackInfoReturnable<Boolean> cir) {
         ItemStack itemStack = this.getMainHandItem();
         if (itemStack.getItem() instanceof GunItem gunItem) {
-            // 检查枪械是否支持瞄准，并且当前正在瞄准且进度足够高
-            if (gunItem.supportsAiming() && this.bren_1_21_1$isAiming()) {
+            if (gunItem.supportsAiming() && this.bren_1_21_1$isAiming() && this.bren_1_21_1$getAimProgress() > 0.7f) {
+                // 直接使用原版望远镜逻辑，当瞄准进度足够高时返回true
                 cir.setReturnValue(true);
             }
         }
@@ -104,38 +104,39 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     private void updateAimingState() {
         Player player = (Player) (Object) this;
         ItemStack mainHandStack = player.getMainHandItem();
-        
+
         // 检查是否手持Rifle并下蹲
-        boolean shouldAim = !mainHandStack.isEmpty() && 
-                           mainHandStack.getItem() instanceof GunItem &&
-                           isRifle(mainHandStack) && 
-                           player.isShiftKeyDown();
-        
+        boolean shouldAim = !mainHandStack.isEmpty() &&
+                mainHandStack.getItem() instanceof GunItem &&
+                isRifle(mainHandStack) &&
+                player.isShiftKeyDown();
+
         if (shouldAim != this.isAiming) {
             this.isAiming = shouldAim;
             LOGGER.debug("Aiming state changed: {}", this.isAiming);
         }
-        
+
         // 更新瞄准进度
         if (this.isAiming) {
             this.aimProgress = Math.min(this.aimProgress + AIM_SPEED, MAX_AIM_PROGRESS);
         } else {
             this.aimProgress = Math.max(this.aimProgress - AIM_SPEED, 0.0f);
         }
-        
+
         // 当瞄准进度足够高时，调用望远镜mixin功能
-        if (this.aimProgress > 0.7f && this.isAiming) {
-            activateSpyglassZoom(player);
-        }
+        // 注释掉此行以避免与自定义FOV冲突
+        // if (this.aimProgress > 0.7f && this.isAiming) {
+        //     activateSpyglassZoom(player);
+        // }
     }
-    
+
     @Unique
     private boolean isRifle(ItemStack stack) {
         // 检查是否为Rifle类型的枪械
         Identifier itemId = BuiltInRegistries.ITEM.getKey(stack.getItem());
         return itemId != null && itemId.getPath().toLowerCase().contains("rifle");
     }
-    
+
     @Unique
     private void activateSpyglassZoom(Player player) {
         // 这里调用原版望远镜的缩放功能
@@ -145,7 +146,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
             applySpyglassZoomEffect();
         }
     }
-    
+
     @Unique
     private void applySpyglassZoomEffect() {
         // 应用望远镜缩放效果
@@ -219,7 +220,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         this.bren_1_21_1$setGunTicks(16);
 
         int fireRate = GunUtils.fire(this);
-        if (fireRate == 0) { 
+        if (fireRate == 0) {
             return;
         }
 
@@ -232,12 +233,12 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         if (player.level().isClientSide()) {
             Vec3 origin = player.getEyePosition();
             Vec3 direction = player.getViewVector(1.0F);
-            
+
             // 创建射击数据包并发送到服务器
             NetworkReg.ShootPayload payload = new NetworkReg.ShootPayload(
-                (float) origin.x, (float) origin.y, (float) origin.z,
-                (float) direction.x, (float) direction.y, (float) direction.z,
-                true // 是否抛出弹壳
+                    (float) origin.x, (float) origin.y, (float) origin.z,
+                    (float) direction.x, (float) direction.y, (float) direction.z,
+                    true // 是否抛出弹壳
             );
             ClientPlayNetworking.send(payload);
         }
@@ -251,7 +252,7 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     @Inject(at = @At("RETURN"), method = "createAttributes")
     private static void createPlayerAttributes(CallbackInfoReturnable<AttributeSupplier.Builder> cir) {
         var builder = cir.getReturnValue();
-        
+
         // 修复：使用RegistryEntry包装EntityAttribute
         if (AttributeReg.RANGED_DAMAGE != null) {
             builder.add(BuiltInRegistries.ATTRIBUTE.wrapAsHolder(AttributeReg.RANGED_DAMAGE), 5d); // 默认伤害值
@@ -320,31 +321,31 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         // 修复：重新添加属性应用逻辑
         this.applyGunAttributes();
     }
-    
+
     @Unique
     private void applyGunAttributes() {
         Player player = (Player) (Object) this;
         ItemStack mainHandStack = player.getMainHandItem();
-        
+
         if (mainHandStack.isEmpty() || !(mainHandStack.getItem() instanceof GunItem gunItem)) {
             // 如果没有持枪，重置属性为默认值
             this.resetGunAttributes();
             return;
         }
-        
+
         // 获取枪械属性
         GunProperties properties = gunItem.getGunProperties(mainHandStack);
         if (properties == null) {
             this.resetGunAttributes();
             return;
         }
-        
+
         // 应用枪械属性到玩家（注意类型转换）
         this.applyAttribute(AttributeReg.RANGED_DAMAGE, (double) properties.rangedDamage);
         this.applyAttribute(AttributeReg.FIRE_RATE, (double) properties.fireRate);
         this.applyAttribute(AttributeReg.RECOIL, (double) properties.recoil);
     }
-    
+
     @Unique
     private void resetGunAttributes() {
         // 重置属性为默认值
@@ -352,13 +353,13 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         this.applyAttribute(AttributeReg.FIRE_RATE, 0d);
         this.applyAttribute(AttributeReg.RECOIL, 0d);
     }
-    
+
     @Unique
     private void applyAttribute(Attribute attribute, double value) {
         if (attribute == null) return;
-        
+
         Player player = (Player) (Object) this;
-        
+
         // 修复：使用RegistryEntry包装EntityAttribute进行检查和操作
         var attributeEntry = BuiltInRegistries.ATTRIBUTE.wrapAsHolder(attribute);
         if (attributeEntry != null) {
@@ -391,21 +392,21 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
 
         ItemStack reloadingGun = gunUser.bren_1_21_1$getReloadingGun();
         LOGGER.debug("PlayerEntityMixin reloadTick: player={}, reloadingGun={}, state={}, aiming={}, aimProgress={}",
-            player.getName().getString(),
-            reloadingGun.isEmpty() ? "EMPTY" : reloadingGun.getItem().toString(),
-            gunUser.bren_1_21_1$getGunState(),
-            gunUser.bren_1_21_1$isAiming(),
-            gunUser.bren_1_21_1$getAimProgress());
+                player.getName().getString(),
+                reloadingGun.isEmpty() ? "EMPTY" : reloadingGun.getItem().toString(),
+                gunUser.bren_1_21_1$getGunState(),
+                gunUser.bren_1_21_1$isAiming(),
+                gunUser.bren_1_21_1$getAimProgress());
 
         if (!reloadingGun.isEmpty() && reloadingGun.getItem() instanceof GunItem gunItem) {
             LOGGER.debug("Calling reloadTick for gun: {}", reloadingGun.getItem().toString());
             gunItem.reloadTick(reloadingGun, player.level(), player, gunUser);
         }
-        
+
         // 更新弹匣相关的组件
         updateMagazineComponents(player);
     }
-    
+
     // 更新弹匣相关的组件
     @Unique
     private void updateMagazineComponents(Player player) {
@@ -414,31 +415,31 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         if (mainHandStack.getItem() instanceof nl.sniffiandros.bren.common.registry.custom.types.GunWithMagItem) {
             updateGunMagazineComponents(mainHandStack);
         }
-        
+
         // 检查副手物品
         ItemStack offHandStack = player.getOffhandItem();
         if (offHandStack.getItem() instanceof nl.sniffiandros.bren.common.registry.custom.types.GunWithMagItem) {
             updateGunMagazineComponents(offHandStack);
         }
     }
-    
+
     // 更新枪械的弹匣组件
     @Unique
     private void updateGunMagazineComponents(ItemStack gunStack) {
         if (!(gunStack.getItem() instanceof nl.sniffiandros.bren.common.registry.custom.types.GunWithMagItem)) {
             return;
         }
-        
+
         // 检查是否有弹匣
         boolean hasMagazine = nl.sniffiandros.bren.common.registry.custom.types.GunWithMagItem.hasMagazine(gunStack);
-        
+
         // 检查弹匣是否是可染色的
         boolean hasColorableMagazine = false;
         if (hasMagazine) {
-            var nbt = gunStack.getOrDefault(net.minecraft.core.component.DataComponents.CUSTOM_DATA, 
-                net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
+            var nbt = gunStack.getOrDefault(net.minecraft.core.component.DataComponents.CUSTOM_DATA,
+                    net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
             String magItemId = nbt.getString("MagazineItem").orElse("");
-            
+
             if (!magItemId.isEmpty()) {
                 var itemId = net.minecraft.resources.Identifier.tryParse(magItemId);
                 if (itemId != null) {
@@ -449,29 +450,20 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
                 }
             }
         }
-        
+
         // 更新弹匣相关的NBT数据
-        var nbt = gunStack.getOrDefault(net.minecraft.core.component.DataComponents.CUSTOM_DATA, 
-            net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
-        
+        var nbt = gunStack.getOrDefault(net.minecraft.core.component.DataComponents.CUSTOM_DATA,
+                net.minecraft.world.item.component.CustomData.EMPTY).copyTag();
+
         // 更新弹匣状态信息
         nbt.putBoolean("bren_has_magazine", hasMagazine);
         nbt.putBoolean("bren_has_colorable_magazine", hasColorableMagazine);
-        
-        // 设置更新后的自定义数据
-        gunStack.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA, 
-            net.minecraft.world.item.component.CustomData.of(nbt));
-        
-        LOGGER.debug("Updated magazine components for gun: hasMagazine={}, hasColorableMagazine={}", 
-            hasMagazine, hasColorableMagazine);
-    }
 
-    @Inject(method = "attack", at = @At("HEAD"))
-    private void onAttack(net.minecraft.world.entity.Entity target, CallbackInfo ci) {
-        Player player = (Player) (Object) this;
-        ItemStack mainHandStack = player.getMainHandItem();
-        
-        // 触发左键点击事件
-        MEvents.ITEM_LEFT_CLICK_EVENT.invoker().onLeftClick(player, mainHandStack);
+        // 设置更新后的自定义数据
+        gunStack.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA,
+                net.minecraft.world.item.component.CustomData.of(nbt));
+
+        LOGGER.debug("Updated magazine components for gun: hasMagazine={}, hasColorableMagazine={}",
+                hasMagazine, hasColorableMagazine);
     }
 }
