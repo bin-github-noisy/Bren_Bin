@@ -21,8 +21,11 @@ import nl.sniffiandros.bren.common.config.MConfig;
 import nl.sniffiandros.bren.common.registry.ClientNetworkReg;
 import nl.sniffiandros.bren.common.registry.KeyBindingReg;
 import nl.sniffiandros.bren.common.registry.ParticleReg;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ClientBren implements ClientModInitializer {
+    private static final Logger LOGGER = LoggerFactory.getLogger("Bren/ClientBren");
 
     @Override
     public void onInitializeClient() {
@@ -49,15 +52,11 @@ public class ClientBren implements ClientModInitializer {
         // 注册后坐力系统渲染回调
         RecoilSys.registerRenderCallback();
 
+        // HUD 现在通过 Mixin 实现，不需要在这里注册
         if (MConfig.showAmmoGui.get()) {
-            // 使用正确的 HudElementRegistry API
-            // HudElementRegistry.addLast(new Identifier("bren", "ammo_overlay"), new HudOverlay() {
-            //     @Override
-            //     public void onHudRender(GuiGraphicsExtractor drawContext, DeltaTracker tickCounter) {
-            //         super.onHudRender(drawContext, tickCounter);
-            //     }
-            // });
-            // 暂时注释掉，避免编译错误，需要先定义 HudOverlay 类
+            LOGGER.info("Ammo GUI is enabled in config");
+        } else {
+            LOGGER.info("Ammo GUI is disabled in config");
         }
 
         LivingEntityRenderLayerRegistrationCallback.EVENT.register((t, r, e, c) -> {
