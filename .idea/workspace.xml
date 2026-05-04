@@ -7,18 +7,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="new gun">
-      <change beforePath="$PROJECT_DIR$/.idea/MarsCodeWorkspaceAppSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MarsCodeWorkspaceAppSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-1.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-1.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-2.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-2.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-3.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-3.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/run/logs/debug-4.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-4.log.gz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/GameRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/GameRendererMixin.java" afterDir="false" />
-    </list>
+    <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="new gun" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -284,8 +273,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.Bren - 26.1 [build]" />
-        <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
+        <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [genSources]" />
         <item itemvalue="Gradle.Bren - 26.1 [downloadAssets]" />
       </list>
@@ -406,7 +395,8 @@
     <MESSAGE value="Added the abandoned factory" />
     <MESSAGE value="2D model position fix" />
     <MESSAGE value="new gun" />
-    <option name="LAST_COMMIT_MESSAGE" value="new gun" />
+    <MESSAGE value="Fixed the ammo display HUD" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed the ammo display HUD" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

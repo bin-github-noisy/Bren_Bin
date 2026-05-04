@@ -17,7 +17,8 @@
     "client.FirstPersonItemRendererMixin",
     "client.ItemRendererMixin",
     "client.MinecraftClientMixin",
-    "client.GameRendererMixin"
+    "client.GameRendererMixin",
+    "client.MinecraftClientHudMixin"
 
   ]
 }
