@@ -19,7 +19,7 @@ public class MagazineItem extends Item {
         this.capacity = capacity;
     }
     @Override
-    public void appendHoverText(ItemStack stack, Item.TooltipContext context, net.minecraft.world.item.component.TooltipDisplay tooltipComponent, java.util.function.Consumer<Component> tooltipAdder, TooltipFlag type) {
+    public void appendHoverText(@NotNull ItemStack stack, Item.@NotNull TooltipContext context, net.minecraft.world.item.component.@NotNull TooltipDisplay tooltipComponent, java.util.function.Consumer<Component> tooltipAdder, @NotNull TooltipFlag type) {
         ChatFormatting formatting = ChatFormatting.GRAY;
 
         tooltipAdder.accept(Component.translatable(String.format("desc.%s.item.magazine.content",Bren.MODID))
@@ -46,7 +46,7 @@ public class MagazineItem extends Item {
     }
 
     @Override
-    public int getBarColor(ItemStack stack) {
+    public int getBarColor(@NotNull ItemStack stack) {
         return Bren.UNIVERSAL_AMMO_COLOR;
     }
 
@@ -59,7 +59,7 @@ public class MagazineItem extends Item {
         CustomData contents = itemStack.get(DataComponents.CUSTOM_DATA);
         if (contents != null) {
             CompoundTag nbt = contents.copyTag();
-            if (nbt != null && nbt.contains("Contents")) {
+            if (nbt.contains("Contents")) {
                 return nbt.getInt("Contents").orElse(0);
             }
         }
@@ -68,13 +68,6 @@ public class MagazineItem extends Item {
 
     public static boolean isEmpty(ItemStack stack) {
         return getContents(stack) <= 0;
-    }
-
-    public static boolean isFull(ItemStack mag) {
-        if (mag.getItem() instanceof MagazineItem) {
-            return MagazineItem.getContents(mag) >= MagazineItem.getMaxCapacity(mag);
-        }
-        return false;
     }
 
     public static int fillMagazine(ItemStack mag, int amount) {
@@ -97,7 +90,4 @@ public class MagazineItem extends Item {
         return 0;
     }
 
-    public int getCapacity() {
-        return capacity;
-    }
 }

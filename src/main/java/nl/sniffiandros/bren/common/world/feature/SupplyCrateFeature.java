@@ -177,7 +177,7 @@ public class SupplyCrateFeature extends Feature<@org.jetbrains.annotations.NotNu
             while (pos.getY() > level.getMinY()) {
                 pos = pos.below();
                 BlockState state = level.getBlockState(pos);
-                if (!state.isAir() && state.blocksMotion()) {
+                if (!state.isAir() && state.isFaceSturdy(level, pos, Direction.UP)) {
                     // 检查上方是否为空气
                     BlockPos abovePos = pos.above();
                     if (level.getBlockState(abovePos).isAir()) {
@@ -200,7 +200,7 @@ public class SupplyCrateFeature extends Feature<@org.jetbrains.annotations.NotNu
         
         // 检查下方方块是否为固体
         BlockState belowState = level.getBlockState(pos.below());
-        if (!belowState.blocksMotion() || belowState.is(Blocks.BEDROCK)) {
+        if (!belowState.isFaceSturdy(level, pos.below(), Direction.UP) || belowState.is(Blocks.BEDROCK)) {
             return false;
         }
         
@@ -208,7 +208,7 @@ public class SupplyCrateFeature extends Feature<@org.jetbrains.annotations.NotNu
         for (Direction direction : Direction.Plane.HORIZONTAL) {
             BlockPos neighborPos = pos.relative(direction);
             BlockState neighborState = level.getBlockState(neighborPos);
-            if (!neighborState.isAir() && neighborState.blocksMotion()) {
+            if (!neighborState.isAir() && neighborState.isFaceSturdy(level, neighborPos, direction.getOpposite())) {
                 return false;
             }
         }

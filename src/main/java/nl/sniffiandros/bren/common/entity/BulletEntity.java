@@ -170,7 +170,7 @@ public class BulletEntity extends Projectile {
 
         Vec3 vec3d = blockHitResult.getLocation();
 
-        if (!state.isAir() && state.isSolid() && this.tickCount > 1) {
+        if (!state.isAir() && state.isFaceSturdy(this.level(), pos, blockHitResult.getDirection()) && this.tickCount > 1) {
 
             if ((state.is(ConventionalBlockTags.GLASS_BLOCKS) || state.is(ConventionalBlockTags.GLASS_PANES)) && MConfig.bulletsBreakGlass.get()) {
                 if (this.level().isClientSide()) { return;} // 修复：使用getEntityWorld()方法替代getWorld()
