@@ -1,11 +1,12 @@
 package nl.sniffiandros.bren.common.registry.custom.types;
 
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import nl.sniffiandros.bren.common.registry.custom.PoseType;
 
 public class FlareGunItem extends GunWithMagItem  {
-    public FlareGunItem(Item.Properties settings) {
+    public FlareGunItem(Properties settings, TagKey<Item> shortMagazines) {
         super(settings);
     }
     @Override
