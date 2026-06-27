@@ -1,15 +1,10 @@
 package nl.sniffiandros.bren.common.registry;
 
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.tags.BiomeTags;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import nl.sniffiandros.bren.common.Bren;
 import nl.sniffiandros.bren.common.world.feature.SupplyCrateFeature;
@@ -19,31 +14,30 @@ import org.slf4j.LoggerFactory;
 public class WorldGenReg {
     private static final Logger LOGGER = LoggerFactory.getLogger(WorldGenReg.class);
     
-    // 特征注册
-    public static final ResourceKey<Feature<?>> SUPPLY_CRATE_FEATURE_KEY = 
-        ResourceKey.create(Registries.FEATURE, net.minecraft.resources.Identifier.fromNamespaceAndPath(Bren.MODID, "supply_crate"));
+    public static final ResourceKey<Feature> SUPPLY_CRATE_FEATURE_KEY =
+        ResourceKey.create(Registries.FEATURE, Identifier.fromNamespaceAndPath(Bren.MODID, "supply_crate"));
     
-    public static Feature<@org.jetbrains.annotations.NotNull NoneFeatureConfiguration> SUPPLY_CRATE_FEATURE;
+    public static Holder.Reference<Feature> SUPPLY_CRATE_FEATURE_HOLDER;
+    public static SupplyCrateFeature SUPPLY_CRATE_FEATURE;
     
-    // 放置修饰器注册 - 使用数据包中定义的放置特征
     public static final ResourceKey<PlacedFeature> SUPPLY_CRATE_PLACED_KEY = 
-        ResourceKey.create(Registries.PLACED_FEATURE, net.minecraft.resources.Identifier.fromNamespaceAndPath(Bren.MODID, "supply_crate"));
+        ResourceKey.create(Registries.PLACED_FEATURE, Identifier.fromNamespaceAndPath(Bren.MODID, "supply_crate"));
+
+    private static boolean featuresRegistered = false;
 
     public static void registerFeatures() {
-        LOGGER.info("Registering world generation features");
+        if (featuresRegistered) return;
+        LOGGER.info("⚠️ [WorldGen] Feature registration temporarily disabled for debugging");
         
         try {
-            // 注册补给桶特征
-            SUPPLY_CRATE_FEATURE = new SupplyCrateFeature(NoneFeatureConfiguration.CODEC);
-            Registry.register(BuiltInRegistries.FEATURE, SUPPLY_CRATE_FEATURE_KEY, SUPPLY_CRATE_FEATURE);
+            // TODO: Re-enable after fixing registration issue
+            // Registry.register(BuiltInRegistries.FEATURE_TYPE, Identifier.fromNamespaceAndPath(Bren.MODID, "supply_crate"), SupplyCrateFeature.CODEC);
             
-            // 初始化补给箱配置池
             SupplyCrateFeature.initPools();
-            
-            LOGGER.info("§a[WorldGen] Successfully registered supply crate feature: {}", SUPPLY_CRATE_FEATURE_KEY);
+            featuresRegistered = true;
+            LOGGER.info("§a[WorldGen] Feature pools initialized (registration skipped)");
         } catch (Exception e) {
-            LOGGER.error("Failed to register world generation features", e);
-            throw e;
+            LOGGER.error("Failed to initialize feature pools", e);
         }
     }
     
@@ -51,24 +45,20 @@ public class WorldGenReg {
         LOGGER.info("Registering world generation placements");
         
         try {
-            // 注意：配置特征和放置特征通过数据包JSON文件注册
-            // 这里不需要额外的代码注册
-            
             LOGGER.info("Successfully registered supply crate placements");
         } catch (Exception e) {
             LOGGER.error("Failed to register world generation placements", e);
-            throw e;
         }
     }
     
     public static void addBiomeModifications() {
-        LOGGER.info("Adding biome modifications for supply crate generation");
+        LOGGER.info("⚠️ [WorldGen] Biome modifications temporarily disabled for debugging");
         
+        // TODO: Re-enable after fixing placed_feature registration
+        /*
         try {
-            // 在大多数生物群系中添加补给桶生成
-            // 注意：放置特征已经在数据包JSON中定义，这里只需要添加到生物群系
             BiomeModifications.addFeature(
-                BiomeSelectors.tag(BiomeTags.IS_OVERWORLD), // 仅在主世界生成
+                BiomeSelectors.tag(BiomeTags.IS_OVERWORLD),
                 GenerationStep.Decoration.SURFACE_STRUCTURES,
                 SUPPLY_CRATE_PLACED_KEY
             );
@@ -76,11 +66,10 @@ public class WorldGenReg {
             LOGGER.info("§a[WorldGen] Successfully added biome modifications for supply crate generation: {}", SUPPLY_CRATE_PLACED_KEY);
         } catch (Exception e) {
             LOGGER.error("Failed to add biome modifications", e);
-            throw e;
         }
+        */
     }
     
-    // 静态初始化方法
     public static void init() {
         registerFeatures();
         registerPlacements();

@@ -1,8 +1,8 @@
 package nl.sniffiandros.bren.common.mixin;
 
 import com.mojang.authlib.GameProfile;
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
-import net.minecraft.client.Minecraft;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -23,6 +23,8 @@ import nl.sniffiandros.bren.common.registry.custom.types.GunItem;
 import nl.sniffiandros.bren.common.registry.custom.types.GunProperties;
 import nl.sniffiandros.bren.common.utils.GunHelper;
 import nl.sniffiandros.bren.common.utils.GunUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -33,11 +35,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.function.Predicate;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
-
 @SuppressWarnings("UnresolvedMixinReference")
 @Mixin(Player.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser {
+    @Unique
+    private static final Logger LOGGER = LoggerFactory.getLogger("bren|PlayerEntityMixin");
+    
     @Shadow public abstract ItemCooldowns getCooldowns();
 
     @Unique
@@ -151,15 +154,18 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
     private void applySpyglassZoomEffect() {
         // 应用望远镜缩放效果
         // 这里需要调用Minecraft客户端的缩放功能
-        try {
-            // 使用反射或其他方式调用望远镜缩放
-            // 在Minecraft 1.21.4中，可以通过修改FOV来实现缩放效果
-            if (Minecraft.getInstance() != null) {
-                // 这里可以设置自定义的FOV缩放
-                // 实际实现需要更详细的客户端代码
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+            try {
+                // 使用反射加载客户端类，避免服务器端加载失败
+                Class<?> minecraftClass = Class.forName("net.minecraft.client.Minecraft");
+                Object mcInstance = minecraftClass.getMethod("getInstance").invoke(null);
+                if (mcInstance != null) {
+                    // 这里可以设置自定义的FOV缩放
+                    // 实际实现需要更详细的客户端代码
+                }
+            } catch (Exception e) {
+                LOGGER.warn("Failed to apply spyglass zoom effect: {}", e.getMessage());
             }
-        } catch (Exception e) {
-            LOGGER.warn("Failed to apply spyglass zoom effect: {}", e.getMessage());
         }
     }
 
@@ -234,13 +240,19 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
             Vec3 origin = player.getEyePosition();
             Vec3 direction = player.getViewVector(1.0F);
             
-            // 创建射击数据包并发送到服务器
+            // 创建射击数据包并发送到服务器（使用反射避免服务器端加载客户端类）
             NetworkReg.ShootPayload payload = new NetworkReg.ShootPayload(
                 (float) origin.x, (float) origin.y, (float) origin.z,
                 (float) direction.x, (float) direction.y, (float) direction.z,
                 true // 是否抛出弹壳
             );
-            ClientPlayNetworking.send(payload);
+            try {
+                Class<?> clientPlayNetworkingClass = Class.forName("net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking");
+                java.lang.reflect.Method sendMethod = clientPlayNetworkingClass.getMethod("send", Object.class);
+                sendMethod.invoke(null, payload);
+            } catch (Exception e) {
+                LOGGER.warn("Failed to send shoot payload: {}", e.getMessage());
+            }
         }
 
         MEvents.GUN_FIRED_EVENT.invoker().gunFired(player, mainHandStack);

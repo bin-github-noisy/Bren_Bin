@@ -1,7 +1,7 @@
 package nl.sniffiandros.bren.common.events;
 
-import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
 import nl.sniffiandros.bren.common.registry.custom.types.GrapplingHookItem;
@@ -16,19 +16,30 @@ public class GrapplingHookHandler {
     
     public static void register() {
         // 服务器端tick事件 - 处理物理效果
-        ServerTickEvents.END_SERVER_TICK.register(server -> {
+        net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents.END_SERVER_TICK.register(server -> {
             // 为每个在线玩家更新钩索
             for (ServerPlayer player : server.getPlayerList().getPlayers()) {
                 updatePlayerHook(player);
             }
         });
         
-        // 客户端tick事件 - 处理视觉效果
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (client.player != null && client.level != null) {
-                GrapplingHookItem.clientTick();
+        // 客户端tick事件 - 仅在客户端运行
+        if (FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT) {
+            try {
+                // 使用反射调用客户端tick，避免服务器端加载客户端类
+                Class<?> clientTickEventsClass = Class.forName("net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents");
+                Object endClientTick = clientTickEventsClass.getField("END_CLIENT_TICK").get(null);
+                // 通过反射注册客户端tick事件
+                java.lang.reflect.Method registerMethod = endClientTick.getClass().getMethod("register", Object.class);
+                registerMethod.invoke(endClientTick, (net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents.EndTick) client -> {
+                    if (client.player != null && client.level != null) {
+                        GrapplingHookItem.clientTick();
+                    }
+                });
+            } catch (Exception e) {
+                LOGGER.warn("Failed to register client tick events: {}", e.getMessage());
             }
-        });
+        }
         
         LOGGER.info("GrapplingHookHandler registered successfully");
     }

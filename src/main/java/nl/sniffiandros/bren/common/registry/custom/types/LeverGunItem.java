@@ -2,7 +2,6 @@ package nl.sniffiandros.bren.common.registry.custom.types;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -35,39 +34,44 @@ public class LeverGunItem extends RevolverItem {
         }
 
         try {
-            Minecraft client = Minecraft.getInstance();
-            boolean isFirstPerson = client.options.getCameraType().isFirstPerson();
+            // 使用反射延迟加载Minecraft客户端类，避免服务器端加载失败
+            Class<?> minecraftClass = Class.forName("net.minecraft.client.Minecraft");
+            Object client = minecraftClass.getMethod("getInstance").invoke(null);
+            if (client != null) {
+                Object options = minecraftClass.getField("options").get(client);
+                Object cameraType = options.getClass().getMethod("getCameraType").invoke(options);
+                boolean isFirstPerson = (Boolean)cameraType.getClass().getMethod("isFirstPerson").invoke(cameraType);
 
-            if (state == GunHelper.GunStates.NORMAL && isFirstPerson) {
-                // 修复动画计算：确保在动画结束时模型不会消失
-                // 使用更安全的动画计算，避免负值和异常
+                if (state == GunHelper.GunStates.NORMAL && isFirstPerson) {
+                    // 修复动画计算：确保在动画结束时模型不会消失
+                    // 使用更安全的动画计算，避免负值和异常
 
-                // 确保cooldownProgress在有效范围内
-                float progress = Math.max(0, Math.min(cooldownProgress, 1.0F));
+                    // 确保cooldownProgress在有效范围内
+                    float progress = Math.max(0, Math.min(cooldownProgress, 1.0F));
 
-                // 改进的动画计算：使用平滑的缓动函数
-                float f = Math.max(0, progress - 0.1F) * 2;  // 从0.5开始动画
-                float f1 = Math.max(0, progress - 0.2F) * 3; // 从0.333开始动画
+                    // 改进的动画计算：使用平滑的缓动函数
+                    float f = Math.max(0, progress - 0.1F) * 2;  // 从0.5开始动画
+                    float f1 = Math.max(0, progress - 0.2F) * 3; // 从0.333开始动画
 
-                // 使用平滑的正弦波，避免绝对值导致的突变
-                float sin1 = (float) Math.sin(f * Math.PI);
-                float sin2 = (float) Math.sin(f1 * Math.PI);
+                    // 使用平滑的正弦波，避免绝对值导致的突变
+                    float sin1 = (float) Math.sin(f * Math.PI);
+                    float sin2 = (float) Math.sin(f1 * Math.PI);
 
-                // 确保动画值在合理范围内
-                sin1 = Math.max(0, sin1);
-                sin2 = Math.max(0, sin2);
+                    // 确保动画值在合理范围内
+                    sin1 = Math.max(0, sin1);
+                    sin2 = Math.max(0, sin2);
 
-                // 应用平滑的动画变换
-                matrices.translate(0, sin1 * 0.3F - sin2 * 0.7F, -0.2F * sin1);
-                matrices.mulPose(Axis.XP.rotation(sin1 * 1.047198F));
-                
-                return true;
+                    // 应用平滑的动画变换
+                    matrices.translate(0, sin1 * 0.3F - sin2 * 0.7F, -0.2F * sin1);
+                    matrices.mulPose(Axis.XP.rotation(sin1 * 1.047198F));
+                    
+                    return true;
+                }
             }
-            
             return false;
         } catch (Exception e) {
             // 如果动画应用失败，记录错误但不中断游戏
-            System.err.println("[Bren Debug] Failed to apply lever gun animation: " + e.getMessage());
+            // 在服务器端预期会失败，忽略错误
             return false;
         }
     }

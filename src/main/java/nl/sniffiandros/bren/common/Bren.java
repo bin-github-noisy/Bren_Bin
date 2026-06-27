@@ -65,8 +65,6 @@ public class Bren implements ModInitializer {
 		// 注册数据组件类型（必须在物品注册之前）
 		DataComponentReg.register();
 
-		AttributeReg.reg();
-
 		// 然后注册其他内容
 		ItemReg.reg();
 		SoundReg.reg();

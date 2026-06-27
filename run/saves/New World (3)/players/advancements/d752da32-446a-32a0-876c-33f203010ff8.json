@@ -1,0 +1,33 @@
+{
+  "minecraft:recipes/misc/bowl": {
+    "criteria": {
+      "has_mushroom": "2026-06-27 10:16:40 +0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2026-06-27 10:15:15 +0800"
+    },
+    "done": true
+  },
+  "minecraft:adventure/root": {
+    "criteria": {
+      "killed_something": "2026-06-27 10:17:12 +0800"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:dappled_forest": "2026-06-27 10:16:23 +0800"
+    },
+    "done": false
+  },
+  "minecraft:recipes/food/mushroom_stew": {
+    "criteria": {
+      "has_mushroom": "2026-06-27 10:16:40 +0800"
+    },
+    "done": true
+  },
+  "DataVersion": 4998
+}

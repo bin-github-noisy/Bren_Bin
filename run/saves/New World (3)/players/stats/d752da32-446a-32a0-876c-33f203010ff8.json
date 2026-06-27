@@ -1,0 +1,28 @@
+{
+  "stats": {
+    "minecraft:used": {
+      "minecraft:shelf_mushroom": 2
+    },
+    "minecraft:picked_up": {
+      "minecraft:shelf_mushroom": 1,
+      "minecraft:cooked_porkchop": 11
+    },
+    "minecraft:killed": {
+      "minecraft:sheep": 2,
+      "minecraft:pig": 4
+    },
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 11442,
+      "minecraft:time_since_rest": 2998,
+      "minecraft:walk_one_cm": 5513,
+      "minecraft:total_world_time": 12439,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 16150,
+      "minecraft:mob_kills": 6,
+      "minecraft:play_time": 2998,
+      "minecraft:jump": 88,
+      "minecraft:time_since_death": 2998
+    }
+  },
+  "DataVersion": 4998
+}

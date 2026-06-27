@@ -1,6 +1,6 @@
 package nl.sniffiandros.bren.common.world.feature;
 
-import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
@@ -10,9 +10,8 @@ import net.minecraft.world.level.WorldGenLevel;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
-import net.minecraft.world.level.levelgen.feature.configurations.NoneFeatureConfiguration;
 import nl.sniffiandros.bren.common.config.MConfig;
 import nl.sniffiandros.bren.common.config.SupplyCrateConfig;
 import nl.sniffiandros.bren.common.registry.ItemReg;
@@ -24,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SupplyCrateFeature extends Feature<@org.jetbrains.annotations.NotNull NoneFeatureConfiguration> {
+public class SupplyCrateFeature implements Feature {
     private static final Logger LOGGER = LoggerFactory.getLogger(SupplyCrateFeature.class);
     
     // 枪械类型权重配置（从配置文件加载）
@@ -116,21 +115,23 @@ public class SupplyCrateFeature extends Feature<@org.jetbrains.annotations.NotNu
         }
     }
 
-    public SupplyCrateFeature(Codec<NoneFeatureConfiguration> codec) {
-        super(codec);
+    public static final MapCodec<SupplyCrateFeature> CODEC = MapCodec.unit(SupplyCrateFeature::new);
+
+    public SupplyCrateFeature() {
     }
 
     @Override
-    public boolean place(FeaturePlaceContext<@org.jetbrains.annotations.NotNull NoneFeatureConfiguration> context) {
+    public MapCodec<? extends Feature> codec() {
+        return CODEC;
+    }
+
+    @Override
+    public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
         // 检查是否启用补给箱生成
         if (!MConfig.enableSupplyCrates.get()) {
             LOGGER.debug("§c[SupplyCrate] Supply crate generation is disabled in config");
             return false;
         }
-        
-        WorldGenLevel level = context.level();
-        BlockPos origin = context.origin();
-        RandomSource random = context.random();
         
         LOGGER.debug("Attempting to generate supply crate at origin: {}", origin);
         // 寻找合适的地表位置

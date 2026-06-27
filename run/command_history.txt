@@ -1,0 +1,2 @@
+/locate biome minecraft:dappled_forest
+/tp @s 3800 71 -3562

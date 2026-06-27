@@ -1,0 +1,9 @@
+{
+  "feature": "minecraft:no_op",
+  "placement": [
+    {
+      "type": "minecraft:rarity_filter",
+      "chance": 1000
+    }
+  ]
+}

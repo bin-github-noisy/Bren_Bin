@@ -1,0 +1,24 @@
+{
+  "stats": {
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 3457,
+      "minecraft:time_since_rest": 501,
+      "minecraft:walk_one_cm": 759,
+      "minecraft:total_world_time": 584,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 351,
+      "minecraft:mob_kills": 3,
+      "minecraft:play_time": 501,
+      "minecraft:jump": 2,
+      "minecraft:time_since_death": 501
+    },
+    "minecraft:picked_up": {
+      "minecraft:white_wool": 1,
+      "minecraft:mutton": 2
+    },
+    "minecraft:killed": {
+      "minecraft:sheep": 3
+    }
+  },
+  "DataVersion": 4891
+}

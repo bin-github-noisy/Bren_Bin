@@ -2,7 +2,6 @@ package nl.sniffiandros.bren.common.registry.custom.types;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -137,8 +136,19 @@ public class ShotgunItem extends BulletOnlyGun {
             return false;
         }
 
-        Minecraft client = Minecraft.getInstance();
-        boolean isFirstPerson = client.options.getCameraType().isFirstPerson();
+        boolean isFirstPerson = false;
+        try {
+            // 使用反射延迟加载Minecraft客户端类，避免服务器端加载失败
+            Class<?> minecraftClass = Class.forName("net.minecraft.client.Minecraft");
+            Object client = minecraftClass.getMethod("getInstance").invoke(null);
+            if (client != null) {
+                Object options = minecraftClass.getField("options").get(client);
+                Object cameraType = options.getClass().getMethod("getCameraType").invoke(options);
+                isFirstPerson = (Boolean)cameraType.getClass().getMethod("isFirstPerson").invoke(cameraType);
+            }
+        } catch (Exception e) {
+            // 在服务器端预期会失败，忽略错误
+        }
 
         if (state == GunHelper.GunStates.NORMAL && isFirstPerson) {
             // 修复动画计算：确保在动画结束时模型不会消失

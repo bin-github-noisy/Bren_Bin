@@ -2,7 +2,6 @@ package nl.sniffiandros.bren.common.registry.custom.types;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.client.Minecraft;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
@@ -48,46 +47,55 @@ public class RevolverItem extends BulletOnlyGun {
         
         if (entity instanceof IGunUser gunUser && cooldownProgress > 0) {
             try {
-                Minecraft client = Minecraft.getInstance();
-                boolean isFirstPerson = client.options.getCameraType().isFirstPerson();
-                boolean reloading = gunUser.bren_1_21_1$getGunState().equals(GunHelper.GunStates.RELOADING);
+                // 使用反射延迟加载Minecraft客户端类，避免服务器端加载失败
+                Class<?> minecraftClass = Class.forName("net.minecraft.client.Minecraft");
+                Object client = minecraftClass.getMethod("getInstance").invoke(null);
+                if (client != null) {
+                    Object options = minecraftClass.getField("options").get(client);
+                    Object cameraType = options.getClass().getMethod("getCameraType").invoke(options);
+                    boolean isFirstPerson = (Boolean)cameraType.getClass().getMethod("isFirstPerson").invoke(cameraType);
+                    boolean reloading = gunUser.bren_1_21_1$getGunState().equals(GunHelper.GunStates.RELOADING);
 
-                float f = cooldownProgress;
-                float f1 = cooldownProgress;
+                    float f = cooldownProgress;
+                    float f1 = cooldownProgress;
 
-                float sin = (float) Math.sin((f * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
-                float sin2 = (float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
-                float sin3 = reloading ? sin2 : (float) Math.sin(1 - f);
+                    float sin = (float) Math.sin((f * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
+                    float sin2 = (float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F;
+                    float sin3 = reloading ? sin2 : (float) Math.sin(1 - f);
 
-                float delta = client.getDeltaTracker().getGameTimeDeltaPartialTick(true);
+                    // 获取delta tick
+                    Object deltaTracker = minecraftClass.getMethod("getDeltaTracker").invoke(client);
+                    float delta = (Float)deltaTracker.getClass().getMethod("getGameTimeDeltaPartialTick", boolean.class).invoke(deltaTracker, true);
 
-                double d = (Math.sin(((float) entity.tickCount + delta) / 6) * (reloading ? sin2 : f1)) * 2;
-                // 添加额外的平滑处理：使用缓动函数来减少动画的突变
-                // 在开始和结束时使用缓入缓出效果
-                float easedSin = easeInOutCubic(sin);
+                    double d = (Math.sin(((float) entity.tickCount + delta) / 6) * (reloading ? sin2 : f1)) * 2;
+                    // 添加额外的平滑处理：使用缓动函数来减少动画的突变
+                    // 在开始和结束时使用缓入缓出效果
+                    float easedSin = easeInOutCubic(sin);
 
-                // 第一人称视角下的位置偏移：将左轮手枪调整到更自然的持枪位置
-                if (isFirstPerson) {
-                    // 使用平滑的缓动值，减少卡顿感
-                    float zOffset = reloading ? 0 : (easedSin / 3 + f1 / 6) * 0.3F;
-                    matrices.translate(0, 0, zOffset);
+                    // 第一人称视角下的位置偏移：将左轮手枪调整到更自然的持枪位置
+                    if (isFirstPerson) {
+                        // 使用平滑的缓动值，减少卡顿感
+                        float zOffset = reloading ? 0 : (easedSin / 3 + f1 / 6) * 0.3F;
+                        matrices.translate(0, 0, zOffset);
+                    }
+
+                    // 装弹动画：在Y轴方向上应用平滑的正弦波动画，模拟装弹时的上下移动
+                    // 使用缓动后的值，使移动更加自然
+                    matrices.translate(0, (reloading ? easedSin / 3 : 0), 0);
+                    // 应用Z轴旋转：根据左右手和装弹状态调整手枪角度
+                    // 左手：90+25度基础角度，装弹时额外增加sin*180度旋转
+                    // 右手：65度基础角度，装弹时额外增加sin*180度旋转
+                    matrices.mulPose(Axis.ZN.rotationDegrees((float) d * sin * 10));
+
+                    // 应用X轴旋转：基于冷却进度的轻微俯仰动画
+                    matrices.mulPose(Axis.XN.rotation((float) (d * 8)));
+                    
+                    return true;
                 }
-
-                // 装弹动画：在Y轴方向上应用平滑的正弦波动画，模拟装弹时的上下移动
-                // 使用缓动后的值，使移动更加自然
-                matrices.translate(0, (reloading ? easedSin / 3 : 0), 0);
-                // 应用Z轴旋转：根据左右手和装弹状态调整手枪角度
-                // 左手：90+25度基础角度，装弹时额外增加sin*180度旋转
-                // 右手：65度基础角度，装弹时额外增加sin*180度旋转
-                matrices.mulPose(Axis.ZN.rotationDegrees((float) d * sin * 10));
-
-                // 应用X轴旋转：基于冷却进度的轻微俯仰动画
-                matrices.mulPose(Axis.XN.rotation((float) (d * 8)));
-                
-                return true;
+                return false;
             } catch (Exception e) {
                 // 如果动画应用失败，记录错误但不中断游戏
-                System.err.println("[Bren Debug] Failed to apply revolver animation: " + e.getMessage());
+                // 在服务器端预期会失败，忽略错误
                 return false;
             }
         }
