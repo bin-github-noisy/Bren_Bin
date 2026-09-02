@@ -14,12 +14,8 @@ import nl.sniffiandros.bren.common.registry.custom.MagazineItem;
 import nl.sniffiandros.bren.common.registry.custom.types.GunItem;
 import nl.sniffiandros.bren.common.utils.GunUtils;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class NetworkReg {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Bren/NetworkReg");
-    
     public static final CustomPacketPayload.Type<ReloadPayload> RELOAD_PACKET_ID = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Bren.MODID, "reload"));
     public static final CustomPacketPayload.Type<RecoilPayload> RECOIL_CLIENT_PACKET_ID = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Bren.MODID, "recoil_client"));
     public static final CustomPacketPayload.Type<ShootClientPayload> SHOOT_CLIENT_PACKET_ID = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Bren.MODID, "shoot_client"));
@@ -30,8 +26,6 @@ public class NetworkReg {
     public static final CustomPacketPayload.Type<ShootParticlePayload> SHOOT_PARTICLE_PACKET_ID = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Bren.MODID, "shoot_particle"));
 
     public static void registerAllPackets() {
-        LOGGER.info("Registering all network packets");
-        
         // 注册所有数据包类型
         // 客户端接收的数据包（S2C - Server to Client）
         PayloadTypeRegistry.clientboundPlay().register(RECOIL_CLIENT_PACKET_ID, RecoilPayload.PACKET_CODEC); // Changed from PayloadTypeRegistry.playS2C() to PayloadTypeRegistry.playS2C()
@@ -47,31 +41,18 @@ public class NetworkReg {
             ServerPlayer player = context.player();
             MinecraftServer server = player.level().getServer();
             
-            LOGGER.info("Received RELOAD packet from player: {}, server: {}", 
-                player.getName().getString(), server != null ? "available" : "null");
-            
             if (server != null) {
                 server.execute(() -> {
                     ItemStack stack = player.getMainHandItem();
 
-                    LOGGER.info("Processing reload for player: {}, main hand item: {}", 
-                        player.getName().getString(), stack.getItem().toString());
-
                     if (stack.getItem() instanceof GunItem gunItem) {
-                        LOGGER.info("Calling onReload for GunItem: {}", stack.getItem().toString());
                         // 修复：移除重复设置reloadingGun的逻辑
                         // onReload方法内部已经设置了reloadingGun
                         gunItem.onReload(player);
                     } else if (stack.getItem() instanceof MagazineItem) {
-                        LOGGER.info("Calling fillMagazine for MagazineItem");
                         GunUtils.fillMagazine(stack, player);
-                    } else {
-                        LOGGER.warn("Player {} attempted to reload with non-gun/magazine item: {}", 
-                            player.getName().getString(), stack.getItem().toString());
                     }
                 });
-            } else {
-                LOGGER.error("Server is null for player {}", player.getName().getString());
             }
         });
         
@@ -83,8 +64,6 @@ public class NetworkReg {
             // 发送粒子效果到客户端
             // 触发射击事件
         });
-        
-        LOGGER.info("All network packets registered successfully");
     }
     
     // 重装包数据类

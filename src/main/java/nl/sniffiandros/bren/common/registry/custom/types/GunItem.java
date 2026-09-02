@@ -25,23 +25,17 @@ import nl.sniffiandros.bren.common.registry.custom.PoseType;
 import nl.sniffiandros.bren.common.utils.GunHelper;
 import nl.sniffiandros.bren.common.utils.GunUtils;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class GunItem extends Item {
-    // 添加日志记录器
-    private static final Logger LOGGER = LoggerFactory.getLogger(GunItem.class);
-
     // 使用静态映射来存储枪械属性，避免在构造函数中访问注册表
     private static final Map<Identifier, GunProperties> GUN_PROPERTIES_MAP = new HashMap<>();
 
     // 修改构造函数，接收Item.Settings参数
     public GunItem(Item.Properties settings) {
         super(settings.stacksTo(1));
-        LOGGER.info("Creating new GunItem instance with custom settings");
     }
 
     @Override
@@ -64,7 +58,6 @@ public class GunItem extends Item {
 
     // 静态方法用于注册枪械属性
     public static void registerGunProperties(Identifier gunId, GunProperties properties) {
-        LOGGER.info("Registering gun properties for: {}", gunId);
         GUN_PROPERTIES_MAP.put(gunId, properties);
     }
 

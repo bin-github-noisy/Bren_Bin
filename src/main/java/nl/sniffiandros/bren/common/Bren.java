@@ -24,12 +24,8 @@ import nl.sniffiandros.bren.common.config.MConfig;
 import nl.sniffiandros.bren.common.entity.BulletEntity;
 import nl.sniffiandros.bren.common.registry.*;
 import nl.sniffiandros.bren.common.registry.custom.MagazineItem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 public class Bren implements ModInitializer {
 	public static final String MODID = "bren";
-    public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 	public static final int UNIVERSAL_AMMO_COLOR = 0xFFAE00;
 
 	public static final ResourceKey<CreativeModeTab> BREN_TAB = ResourceKey.create(Registries.CREATIVE_MODE_TAB, Identifier.fromNamespaceAndPath(MODID, "bren_tab"));
@@ -136,7 +132,7 @@ public class Bren implements ModInitializer {
 			.build()
 		);
 
-		LOGGER.info("BAM! {} is done loading!", MODID);
+		// BAM! {} is done loading!
 	}
 
 	private static ItemStack mag(MagazineItem m) {
@@ -148,8 +144,6 @@ public class Bren implements ModInitializer {
 	public static ItemStack getMagazineFromPlayer(Player player, TagKey<Item> magTag) {
 		// 添加空值检查
 		if (magTag == null) {
-			Bren.LOGGER.warn("getMagazineFromPlayer called with null magTag for player {}", 
-				player.getName().getString());
 			return ItemStack.EMPTY;
 		}
 		
@@ -157,32 +151,20 @@ public class Bren implements ModInitializer {
 		ItemStack fullestMag = ItemStack.EMPTY;
 		ItemStack emptyMag = ItemStack.EMPTY; // 用于存储空弹匣
 		
-		// 添加空值检查
-
-        Bren.LOGGER.debug("Searching for magazine for player {} with tag: {}",
-			player.getName().getString(), magTag.location());
-	
 		// 首先尝试直接物品匹配（绕过标签系统）
 		Item[] compatibleItems = getCompatibleMagazineItems(magTag);
 		if (compatibleItems.length == 0) {
-			Bren.LOGGER.warn("No compatible magazine items found for tag: {}", magTag.location());
 			return ItemStack.EMPTY;
 		}
 	
 		// 检查副手
 		if (!player.getOffhandItem().isEmpty() && isCompatibleMagazine(player.getOffhandItem(), compatibleItems)) {
-			int contents = MagazineItem.getContents(player.getOffhandItem());
-			Bren.LOGGER.debug("Found magazine in offhand for player {}: item={}, contents={}", 
-				player.getName().getString(), player.getOffhandItem().getItem(), contents);
 			// 优先选择有子弹的弹匣，如果没有则选择空弹匣
 			if (!MagazineItem.isEmpty(player.getOffhandItem())) {
 				return player.getOffhandItem();
 			} else {
 				emptyMag = player.getOffhandItem();
 			}
-		} else if (!player.getOffhandItem().isEmpty()) {
-			Bren.LOGGER.debug("Offhand item for player {} is not matching: {}", 
-				player.getName().getString(), player.getOffhandItem().getItem());
 		}
 		
 		int foundCount = 0;
@@ -199,43 +181,29 @@ public class Bren implements ModInitializer {
 			
 			if (matches) {
 				foundCount++;
-				int contents = MagazineItem.getContents(itemStack);
-				Bren.LOGGER.debug("Found matching magazine for player {} at slot {}: item={}, contents={}", 
-					player.getName().getString(), i, itemStack.getItem(), contents);
 				
 				// 修复：优先选择有子弹的弹匣，而不是容量最大的
 				if (!MagazineItem.isEmpty(itemStack) && MagazineItem.getContents(itemStack) > 0) {
 					if (fullestMag.isEmpty() || MagazineItem.getContents(itemStack) > MagazineItem.getContents(fullestMag)) {
 						fullestMag = itemStack;
-						Bren.LOGGER.debug("Updated fullestMag for player {}: item={}, contents={}", 
-							player.getName().getString(), fullestMag.getItem(), contents);
 					}
 				} else if (emptyMag.isEmpty()) {
 					// 保存第一个找到的空弹匣
 					emptyMag = itemStack;
-					Bren.LOGGER.debug("Found empty magazine for player {}: item={}", 
-						player.getName().getString(), emptyMag.getItem());
 				}
 			}
 		}
 		
 		// 如果找到了有子弹的弹匣，优先返回它
 		if (!fullestMag.isEmpty()) {
-			int finalContents = MagazineItem.getContents(fullestMag);
-			Bren.LOGGER.info("Selected loaded magazine for player {}: item={}, contents={}, total found={}", 
-				player.getName().getString(), fullestMag.getItem(), finalContents, foundCount);
 			return fullestMag;
 		}
 		
 		// 如果没有找到有子弹的弹匣，但找到了空弹匣，返回空弹匣
 		if (!emptyMag.isEmpty()) {
-			Bren.LOGGER.info("Selected empty magazine for player {}: item={}, total found={}", 
-				player.getName().getString(), emptyMag.getItem(), foundCount);
 			return emptyMag;
 		}
 		
-		Bren.LOGGER.info("No suitable magazine found for player {} with tag: {}, total checked={}", 
-			player.getName().getString(), magTag.location(), foundCount);
 		return ItemStack.EMPTY;
 	}
 
@@ -246,7 +214,6 @@ public class Bren implements ModInitializer {
 		} else if (magTag.location().getPath().equals("magazines/short_magazines")) {
 			return new Item[]{ItemReg.SHORT_MAGAZINE};
 		} else {
-			Bren.LOGGER.warn("Unknown magazine tag: {}", magTag.location().getPath());
 			return new Item[0];
 		}
 	}
@@ -264,26 +231,17 @@ public class Bren implements ModInitializer {
 	public static ItemStack getItemFromPlayer(Player player, Item item) {
 		Container inventory = player.getInventory();
 
-		Bren.LOGGER.debug("Searching for item for player {}: {}", 
-			player.getName().getString(), item.toString());
-
 		if (player.getOffhandItem().is(item)) {
-			Bren.LOGGER.debug("Found item in offhand for player {}: {}", 
-				player.getName().getString(), item);
 			return player.getOffhandItem();
 		}
 		
 		for(int i = 0; i < inventory.getContainerSize(); ++i) {
 			ItemStack itemStack = inventory.getItem(i);
 			if (itemStack.is(item)) {
-				Bren.LOGGER.debug("Found item for player {} at slot {}: {}", 
-					player.getName().getString(), i, item);
 				return itemStack;
 			}
 		}
 		
-		Bren.LOGGER.info("Item not found for player {}: {}", 
-			player.getName().getString(), item);
 		return ItemStack.EMPTY;
 	}
 }

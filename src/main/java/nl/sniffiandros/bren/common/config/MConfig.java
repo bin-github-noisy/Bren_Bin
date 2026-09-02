@@ -1,7 +1,9 @@
 package nl.sniffiandros.bren.common.config;
 
-import com.google.gson.*;
-import nl.sniffiandros.bren.common.Bren;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 
 import java.io.File;
 import java.io.FileReader;
@@ -128,7 +130,6 @@ public class MConfig {
 
     public static void save() {
         if (!file.getParentFile().isDirectory() && !file.getParentFile().mkdirs()) {
-            Bren.LOGGER.error("Failed to create config directory");
             return;
         }
 
@@ -153,10 +154,8 @@ public class MConfig {
             }
 
             GSON.toJson(jsonObject, fileWriter);
-        } catch (IOException e) {
-            Bren.LOGGER.error("Failed to save the Bren config", e);
-        } catch (IllegalAccessException e) {
-            Bren.LOGGER.error("Error while saving the Bren config", e);
+        } catch (IOException | IllegalAccessException e) {
+            // Failed to save the Bren config
         }
     }
 
@@ -188,10 +187,8 @@ public class MConfig {
                 JsonElement jsonElement = jsonObject.get(fieldName);
                 configValue.setUnchecked(configValue.read(jsonElement));
             }
-        } catch (IOException e) {
-            Bren.LOGGER.error("Failed to read the Bren config", e);
-        } catch (IllegalAccessException e) {
-            Bren.LOGGER.error("Error while reading the Bren config", e);
+        } catch (IOException | IllegalAccessException e) {
+            // Failed to read the Bren config
         }
     }
 

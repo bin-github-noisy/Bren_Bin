@@ -1,27 +1,18 @@
 package nl.sniffiandros.bren.common.registry.custom.types;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Optional;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 public class MachineGunItem extends GunWithMagItem {
-    // 添加日志记录器
-    private static final Logger LOGGER = LoggerFactory.getLogger(MachineGunItem.class);
-    
     // 修改为接收Item.Settings参数的构造函数，调用父类的构造函数
     public MachineGunItem(Item.Properties settings) {
         super(settings);
-        LOGGER.info("Creating new MachineGunItem instance");
     }
 
     // 可选：提供自定义弹匣标签的构造函数
     public MachineGunItem(Item.Properties settings, TagKey<Item> compatibleMagazines) {
         super(settings, compatibleMagazines);
-        LOGGER.info("Creating new MachineGunItem instance with custom magazines");
     }
 
     @Override

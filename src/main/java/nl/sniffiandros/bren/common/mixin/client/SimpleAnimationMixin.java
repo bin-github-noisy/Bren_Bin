@@ -44,45 +44,7 @@ public class SimpleAnimationMixin {
             boolean isMainHandGun = !mainHandItem.isEmpty() && mainHandItem.getItem() instanceof GunItem;
             boolean isOffHandGun = !offHandItem.isEmpty() && offHandItem.getItem() instanceof GunItem;
 
-            // 调试信息
-            if (isMainHandGun || isOffHandGun) {
-                System.out.println("[Bren Simple Debug] Gun detected in hand - Display Context: " + displayContext);
-                
-                // 尝试简单的动画测试
-                try {
-                    // 方法1：尝试使用 pose() 方法
-                    try {
-                        java.lang.reflect.Method poseMethod = output.getClass().getDeclaredMethod("pose");
-                        com.mojang.blaze3d.vertex.PoseStack poseStack = (com.mojang.blaze3d.vertex.PoseStack) poseMethod.invoke(output);
-                        
-                        if (poseStack != null) {
-                            // 应用简单的平移变换
-                            poseStack.translate(0, 0, 0.2F);
-                            System.out.println("[Bren Simple Debug] Simple translation applied via pose() method");
-                        }
-                    } catch (Exception e) {
-                        System.err.println("[Bren Simple Debug] pose() method failed: " + e.getMessage());
-                    }
-                    
-                    // 方法2：尝试直接访问变换字段
-                    try {
-                        java.lang.reflect.Field transformField = output.getClass().getDeclaredField("transform");
-                        transformField.setAccessible(true);
-                        org.joml.Matrix4f transform = (org.joml.Matrix4f) transformField.get(output);
-                        
-                        if (transform != null) {
-                            // 应用简单的平移
-                            transform.translate(0, 0, 0.2F);
-                            System.out.println("[Bren Simple Debug] Simple translation applied via transform field");
-                        }
-                    } catch (Exception e) {
-                        System.err.println("[Bren Simple Debug] transform field access failed: " + e.getMessage());
-                    }
-                    
-                } catch (Exception e) {
-                    System.err.println("[Bren Simple Debug] Animation test failed: " + e.getMessage());
-                }
-            }
+            // 调试信息已移除
         }
     }
 }

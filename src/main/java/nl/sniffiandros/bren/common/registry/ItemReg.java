@@ -11,12 +11,8 @@ import nl.sniffiandros.bren.common.config.MConfig;
 import nl.sniffiandros.bren.common.registry.custom.ColorableMagazineItem;
 import nl.sniffiandros.bren.common.registry.custom.types.*;
 import nl.sniffiandros.bren.common.registry.custom.MagazineItem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ItemReg {
-    // 添加日志记录器
-    private static final Logger LOGGER = LoggerFactory.getLogger(ItemReg.class);
 
     // Machine Gun
     public static final float MACHINE_GUN_RECOIL = 2f;
@@ -110,7 +106,6 @@ public class ItemReg {
 
     // 简化枪械物品注册方法
     private static Item registerGunItem(String name, java.util.function.Function<Item.Properties, Item> factory, GunProperties properties) {
-        LOGGER.info("Registering gun item with properties: {}", name);
         try {
             // 直接使用标准注册模式
             Item registeredItem = register(name, factory, new Item.Properties().stacksTo(1));
@@ -125,11 +120,8 @@ public class ItemReg {
     }
 
     public static void reg(){
-        LOGGER.info("Starting item registration process");
-
         try {
             // 第一步：注册所有基础物品 - 使用1.21.4+标准模式
-            LOGGER.info("Registering basic items");
             BULLET = registerItem("bullet", new Item.Properties().stacksTo(64));
             SHELL = registerItem("shell", new Item.Properties().stacksTo(64));
             DRAGONBREATH_SHELL = registerItem("dragonbreath_shell", new Item.Properties().stacksTo(64));
@@ -137,7 +129,6 @@ public class ItemReg {
             METAL_TUBE = registerItem("metal_tube", new Item.Properties().stacksTo(64));
 
             // 注册弹匣物品 - 使用1.21.4+标准模式
-            LOGGER.info("Registering magazine items");
             DRUM_MAGAZINE = registerCustomItem("drum_magazine", s -> new MagazineItem(s, 120), new Item.Properties().stacksTo(1));
             MAGAZINE = registerCustomItem("magazine", s -> new MagazineItem(s, 30), new Item.Properties().stacksTo(1));
             CLOTHED_MAGAZINE = registerCustomItem("clothed_magazine", s -> new ColorableMagazineItem(s, 50), new Item.Properties().stacksTo(1));
@@ -145,13 +136,11 @@ public class ItemReg {
             FIRE_AXE = registerCustomItem("fire_axe", FireAxeItem::new, new Item.Properties().stacksTo(1));
             
             // 注册钩索
-            LOGGER.info("Registering grappling hook");
             GRAPPLING_HOOK = registerCustomItem("grappling_hook", 
                 nl.sniffiandros.bren.common.registry.custom.types.GrapplingHookItem::new, 
                 new Item.Properties().stacksTo(1));
 
             // 第二步：注册枪械物品并立即注册属性 - 使用1.21.4+标准模式
-            LOGGER.info("Registering gun items with properties");
 
             EXPLOSIVE_SPEAR = registerCustomItem("lunge_mine",
                     s -> new ExplosiveSpearItem(VanillaToolMaterials.IRON, EXPLOSIVE_SPEAR_POWER, s),
@@ -247,10 +236,7 @@ public class ItemReg {
                             .shootSound(SoundReg.ITEM_RIFLE_SHOOT, SoundReg.ITEM_RIFLE_SHOOT_SILENCED)
                             );
 
-
-            LOGGER.info("Item registration process completed successfully");
         } catch (Exception e) {
-            LOGGER.error("Error during item registration process", e);
             throw e;
         }
     }

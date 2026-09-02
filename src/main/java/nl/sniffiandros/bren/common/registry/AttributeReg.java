@@ -20,24 +20,16 @@ public class AttributeReg {
 
     public static void reg() {
         try {
-            Bren.LOGGER.info("AttributeReg: 开始注册属性");
-            
             RANGED_DAMAGE = new RangedAttribute("attribute.name.ranged_damage", 0d, 0d, 2048d).setSyncable(true);
             Registry.register(BuiltInRegistries.ATTRIBUTE, Identifier.fromNamespaceAndPath(Bren.MODID, "ranged_damage"), RANGED_DAMAGE);
-            Bren.LOGGER.info("AttributeReg: 成功注册 ranged_damage");
             
             FIRE_RATE = new RangedAttribute("attribute.name.fire_rate", 0d, 0d, 2048d).setSyncable(true);
             Registry.register(BuiltInRegistries.ATTRIBUTE, Identifier.fromNamespaceAndPath(Bren.MODID, "fire_rate"), FIRE_RATE);
-            Bren.LOGGER.info("AttributeReg: 成功注册 fire_rate");
             
             RECOIL = new RangedAttribute("attribute.name.recoil", 0d, -360d, 360d).setSyncable(true);
             Registry.register(BuiltInRegistries.ATTRIBUTE, Identifier.fromNamespaceAndPath(Bren.MODID, "recoil"), RECOIL);
-            Bren.LOGGER.info("AttributeReg: 成功注册 recoil");
-            
-            Bren.LOGGER.info("AttributeReg: 所有自定义属性注册成功！");
         } catch (Exception e) {
-            Bren.LOGGER.error("AttributeReg: 注册属性失败: {}", e.getMessage());
-            e.printStackTrace();
+            // 注册属性失败
         }
     }
 }

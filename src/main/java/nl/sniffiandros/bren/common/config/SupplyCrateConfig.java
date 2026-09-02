@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import nl.sniffiandros.bren.common.Bren;
 
 import java.io.File;
 import java.io.FileReader;
@@ -74,7 +73,6 @@ public class SupplyCrateConfig {
 
     public static void save() {
         if (!file.getParentFile().isDirectory() && !file.getParentFile().mkdirs()) {
-            Bren.LOGGER.error("Failed to create supply crate config directory");
             return;
         }
 
@@ -106,7 +104,7 @@ public class SupplyCrateConfig {
 
             GSON.toJson(jsonObject, fileWriter);
         } catch (IOException e) {
-            Bren.LOGGER.error("Failed to save supply crate config", e);
+            // Failed to save supply crate config
         }
     }
 
@@ -149,7 +147,7 @@ public class SupplyCrateConfig {
             }
 
         } catch (IOException e) {
-            Bren.LOGGER.error("Failed to read supply crate config", e);
+            // Failed to read supply crate config
         }
     }
 

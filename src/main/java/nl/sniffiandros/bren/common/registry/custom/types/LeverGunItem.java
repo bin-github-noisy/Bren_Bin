@@ -66,8 +66,6 @@ public class LeverGunItem extends RevolverItem {
             
             return false;
         } catch (Exception e) {
-            // 如果动画应用失败，记录错误但不中断游戏
-            System.err.println("[Bren Debug] Failed to apply lever gun animation: " + e.getMessage());
             return false;
         }
     }

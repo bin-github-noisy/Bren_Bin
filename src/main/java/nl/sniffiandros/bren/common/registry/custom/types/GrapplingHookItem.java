@@ -18,14 +18,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 钩索物品类，实现将玩家拉向抓住的地方的功能
  */
 public class GrapplingHookItem extends Item {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GrapplingHookItem.class);
     
     // 钩索属性
     public static final double HOOK_RANGE =100.0; // 钩索最大射程
@@ -45,7 +42,6 @@ public class GrapplingHookItem extends Item {
     
     public GrapplingHookItem(Properties settings) {
         super(settings.stacksTo(1));
-        LOGGER.info("Creating new GrapplingHookItem instance");
     }
     
     @Override
@@ -83,10 +79,6 @@ public class GrapplingHookItem extends Item {
                 // 播放完成声音
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), 
                     SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 1.0F, 1.0F);
-                
-                LOGGER.debug("Grappling hook pumped and filled with gas");
-            } else {
-                LOGGER.debug("Grappling hook pumped: {}/{}", pumps, PUMPS_TO_FILL);
             }
             
             return InteractionResult.SUCCESS;
@@ -131,7 +123,6 @@ public class GrapplingHookItem extends Item {
             var itemId = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem());
             player.getCooldowns().addCooldown(itemId, COOLDOWN_TICKS);
             
-            LOGGER.debug("Hook shot and hit block at: {}, gas remaining: {}", hookedPos, currentGas - 1);
             return InteractionResult.SUCCESS;
         }
         
@@ -149,8 +140,7 @@ public class GrapplingHookItem extends Item {
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), 
             SoundEvents.CROSSBOW_LOADING_START, SoundSource.PLAYERS, 0.5F, 1.0F);
         
-        LOGGER.debug("Hook released");
-    }
+        }
     
     /**
      * 每刻更新钩索的物理效果

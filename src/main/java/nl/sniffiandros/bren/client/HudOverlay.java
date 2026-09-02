@@ -5,11 +5,8 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.state.gui.GuiRenderState;
 import net.minecraft.resources.Identifier;
 import nl.sniffiandros.bren.common.Bren;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class HudOverlay {
-    private static final Logger LOGGER = LoggerFactory.getLogger("Bren/HudOverlay");
     private static final Identifier BULLET_ICONS = Identifier.fromNamespaceAndPath(Bren.MODID,
             "textures/gui/bullet_icons.png");
 

@@ -1,5 +1,4 @@
-plugins {
-	id 'net.fabricmc.fabric-loom' version '1.15-SNAPSHOT'
+plugins {id 'net.fabricmc.fabric-loom' version "${loom_version}"
 	id 'maven-publish'
 }
 
@@ -11,6 +10,7 @@ base {
 }
 
 repositories {
+	maven { url "https://maven.fabricmc.net/" }
 	// Add repositories to retrieve artifacts from in here.
 	// You should only use this when depending on other mods because
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.

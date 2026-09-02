@@ -86,8 +86,6 @@ public class RevolverItem extends BulletOnlyGun {
                 
                 return true;
             } catch (Exception e) {
-                // 如果动画应用失败，记录错误但不中断游戏
-                System.err.println("[Bren Debug] Failed to apply revolver animation: " + e.getMessage());
                 return false;
             }
         }

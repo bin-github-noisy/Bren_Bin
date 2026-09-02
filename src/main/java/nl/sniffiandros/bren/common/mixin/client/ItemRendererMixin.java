@@ -53,26 +53,14 @@ public abstract class ItemRendererMixin {
             boolean isMainHandGun = !mainHandItem.isEmpty() && mainHandItem.getItem() instanceof GunItem;
             boolean isOffHandGun = !offHandItem.isEmpty() && offHandItem.getItem() instanceof GunItem;
 
-            // 调试信息：显示当前渲染状态
-            if (isMainHandGun || isOffHandGun) {
-                System.out.println("[Bren Debug] Gun animation triggered for display context: " + displayContext);
-            }
-
             // 检查是否为第一人称渲染模式
             boolean isFirstPerson = isFirstPersonRender(displayContext);
-            
-            // 调试信息：显示当前渲染模式
-            if (isMainHandGun || isOffHandGun) {
-                System.out.println("[Bren Debug] Display context: " + displayContext + ", isFirstPerson: " + isFirstPerson);
-            }
             
             if (isFirstPerson) {
                 // 应用第一人称枪械动画变换到渲染状态
                 if (isMainHandGun) {
-                    System.out.println("[Bren Debug] Applying first person animation to main hand");
                     applyFirstPersonAnimationTransform(output, livingEntity, mainHandItem);
                 } else if (isOffHandGun) {
-                    System.out.println("[Bren Debug] Applying first person animation to off hand");
                     applyFirstPersonAnimationTransform(output, livingEntity, offHandItem);
                 }
             } else {
@@ -191,28 +179,22 @@ public abstract class ItemRendererMixin {
             try {
                 // 使用新的变换方法，避免使用反射
                 applyModernFirstPersonTransform(output, sin, sin2, sin3, d, leftHanded, reloading);
-                System.out.println("[Bren Debug] First person animation applied successfully via modern API");
                 return; // 如果成功，直接返回
             } catch (Exception e) {
-                System.err.println("[Bren Debug] Modern API failed: " + e.getMessage());
+                // Modern API failed
             }
             
             // 方法2：尝试使用基础的位置和旋转设置
             try {
                 // 使用更安全的方法来设置位置和旋转
                 applySafeFirstPersonTransform(output, sin, sin2, sin3, d, leftHanded, reloading);
-                System.out.println("[Bren Debug] First person animation applied successfully via safe method");
                 return; // 如果成功，直接返回
             } catch (Exception e) {
-                System.err.println("[Bren Debug] Safe method failed: " + e.getMessage());
+                // Safe method failed
             }
             
-            // 如果所有方法都失败，记录调试信息
-            System.err.println("[Bren Debug] All first person animation methods failed");
-            
         } catch (Exception e) {
-            // 如果所有方法都失败，记录错误但不中断游戏
-            System.err.println("[Bren Debug] Failed to apply first person animation transform: " + e.getMessage());
+            // Failed to apply first person animation transform
         }
     }
     
@@ -251,8 +233,6 @@ public abstract class ItemRendererMixin {
                     localTransform.translate(sideOffset, 0, zOffset + forwardOffset);
                     localTransform.rotateZ((float) Math.toRadians(zRotation));
                     localTransform.rotateX((float) Math.toRadians(xRotation));
-                    
-                    System.out.println("[Bren Debug] First person animation applied via localTransform with forward/side offset");
                     return;
                 }
             }
@@ -295,8 +275,6 @@ public abstract class ItemRendererMixin {
                     localTransform.translate(0, 0, simpleOffset);
                     localTransform.rotateZ((float) Math.toRadians(simpleZRotation));
                     localTransform.rotateX((float) Math.toRadians(simpleXRotation));
-                    
-                    System.out.println("[Bren Debug] Safe first person animation applied via localTransform");
                     return;
                 }
             }
@@ -344,8 +322,6 @@ public abstract class ItemRendererMixin {
                         localTransform.rotateX((float) Math.toRadians(xRotation));
                         // 修改：增加向前和向外侧偏移，防止枪械嵌入身体
                         localTransform.translate(sideOffset, yOffset, forwardOffset);
-                        
-                        System.out.println("[Bren Debug] Third person animation applied successfully via localTransform with offset fix");
                         return; // 如果成功，直接返回
                     }
                 }
@@ -353,7 +329,7 @@ public abstract class ItemRendererMixin {
                 throw new RuntimeException("Layers or localTransform not found");
                 
             } catch (Exception e) {
-                System.err.println("[Bren Debug] Third person localTransform method failed: " + e.getMessage());
+                // Third person localTransform method failed
             }
             
             // 方法2：尝试使用更简单的动画效果
@@ -380,8 +356,6 @@ public abstract class ItemRendererMixin {
                         
                         localTransform.rotateY((float) Math.toRadians(simpleRotation));
                         localTransform.translate(sideOffset, 0.1F, forwardOffset);
-                        
-                        System.out.println("[Bren Debug] Simple third person animation applied successfully with offset fix");
                         return;
                     }
                 }
@@ -389,32 +363,19 @@ public abstract class ItemRendererMixin {
                 throw new RuntimeException("Layers or localTransform not found");
                 
             } catch (Exception e) {
-                System.err.println("[Bren Debug] Simple third person animation approach also failed: " + e.getMessage());
+                // Simple third person animation approach also failed
             }
             
-            // 如果所有方法都失败，记录调试信息
-            System.err.println("[Bren Debug] All third person animation methods failed");
-            
         } catch (Exception e) {
-            // 如果所有方法都失败，记录错误但不中断游戏
-            System.err.println("[Bren Debug] Failed to apply third person animation transform: " + e.getMessage());
+            // Failed to apply third person animation transform
         }
     }
 
     @Unique
     private static boolean isFirstPersonRender(net.minecraft.world.item.ItemDisplayContext itemDisplayContext) {
         // 通过ItemDisplayContext判断是否为第一人称渲染
-        
-        // 调试：输出所有显示上下文信息
-        System.out.println("[Bren Debug] Checking display context: " + itemDisplayContext + ", name: " + itemDisplayContext.name());
-        
-        // 检查所有可能的第一人称显示上下文
-        boolean isFirstPerson = itemDisplayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_LEFT_HAND || 
-                               itemDisplayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_RIGHT_HAND;
-        
-        System.out.println("[Bren Debug] isFirstPerson result: " + isFirstPerson);
-        
-        return isFirstPerson;
+        return itemDisplayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_LEFT_HAND || 
+               itemDisplayContext == net.minecraft.world.item.ItemDisplayContext.FIRST_PERSON_RIGHT_HAND;
     }
 
     @Unique
