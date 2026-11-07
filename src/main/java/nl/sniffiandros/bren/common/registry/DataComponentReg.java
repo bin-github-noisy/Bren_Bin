@@ -6,12 +6,14 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import nl.sniffiandros.bren.common.Bren;
+import nl.sniffiandros.bren.common.registry.custom.MagazineItem;
 import nl.sniffiandros.bren.common.registry.custom.types.GunWithMagItem;
 
 public class DataComponentReg {
     
     // 声明数据组件类型（先不初始化）
     public static DataComponentType<Boolean> HAS_MAGAZINE;
+    public static DataComponentType<Boolean> HAS_AMMO;
     public static DataComponentType<Integer> GUN_MODEL_TYPE;
     
     /**
@@ -41,5 +43,18 @@ public class DataComponentReg {
         // 同步到 GunWithMagItem 中的静态字段
         GunWithMagItem.HAS_MAGAZINE = HAS_MAGAZINE;
         GunWithMagItem.GUN_MODEL_TYPE = GUN_MODEL_TYPE;
+
+        // 注册弹匣是否装有弹药组件
+        HAS_AMMO = Registry.register(
+            BuiltInRegistries.DATA_COMPONENT_TYPE,
+            ResourceKey.create(BuiltInRegistries.DATA_COMPONENT_TYPE.key(), Identifier.fromNamespaceAndPath(Bren.MODID, "has_ammo")),
+            DataComponentType.<Boolean>builder()
+                .persistent(com.mojang.serialization.Codec.BOOL)
+                .networkSynchronized(net.minecraft.network.codec.ByteBufCodecs.BOOL)
+                .build()
+        );
+
+        // 同步到 MagazineItem 中的静态字段
+        MagazineItem.HAS_AMMO = HAS_AMMO;
     }
 }

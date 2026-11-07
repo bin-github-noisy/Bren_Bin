@@ -1,6 +1,7 @@
 package nl.sniffiandros.bren.common.registry.custom;
 
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -12,6 +13,9 @@ import nl.sniffiandros.bren.common.Bren;
 import org.jetbrains.annotations.NotNull;
 
 public class MagazineItem extends Item {
+    /** 标记弹匣内是否装有弹药，驱动模型在空/满纹理之间切换 */
+    public static DataComponentType<Boolean> HAS_AMMO;
+
     private final int capacity;
 
     public MagazineItem(Properties settings, int capacity) {
@@ -83,6 +87,14 @@ public class MagazineItem extends Item {
             nbt.putInt("Contents", newContents);
             mag.set(DataComponents.CUSTOM_DATA, CustomData.of(nbt));
 
+            // 根据是否还有弹药更新模型标记（有弹药显示满弹匣纹理，空则显示空弹匣纹理）
+            if (HAS_AMMO != null) {
+                if (newContents > 0) {
+                    mag.set(HAS_AMMO, true);
+                } else {
+                    mag.remove(HAS_AMMO);
+                }
+            }
 
             // 返回实际填充的子弹数量
             return newContents - original;

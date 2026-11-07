@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "bren:item/full_magazine"
+    "layer0": "bren:item/empty_magazine"
   },
   "overrides": [
     {
