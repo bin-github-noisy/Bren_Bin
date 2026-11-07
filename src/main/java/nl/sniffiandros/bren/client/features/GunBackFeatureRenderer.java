@@ -67,9 +67,9 @@ public class GunBackFeatureRenderer<T extends net.minecraft.client.renderer.enti
             float roll = (float) rollField.get(modelPart);
 
             matrices.translate(pivotX / 16.0F, pivotY / 16.0F, pivotZ / 16.0F);
-            matrices.mulPose(Axis.XP.rotation(pitch));
-            matrices.mulPose(Axis.YP.rotation(yaw));
-            matrices.mulPose(Axis.ZP.rotation(roll));
+            matrices.rotate(Axis.XP, pitch);
+            matrices.rotate(Axis.YP, yaw);
+            matrices.rotate(Axis.ZP, roll);
         } catch (Exception e) {
             // 如果反射失败，使用默认值
             matrices.translate(0, 0, 0);
@@ -77,8 +77,8 @@ public class GunBackFeatureRenderer<T extends net.minecraft.client.renderer.enti
 
         matrices.translate(0.1F, 0.1F, 0.25F);
         matrices.scale(1.65F, 1.65F, 1.0F);
-        matrices.mulPose(Axis.ZP.rotationDegrees(60 + 180));
-        matrices.mulPose(Axis.YP.rotationDegrees(-180));
+        matrices.rotateDegrees(Axis.ZP, 60 + 180);
+        matrices.rotateDegrees(Axis.YP, -180);
 
         // 使用Minecraft 1.21.6中正确的ItemRenderer.renderItem方法签名
         // 回退到不使用TransformationMode参数的版本，避免类找不到的问题

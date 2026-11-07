@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.KeyMapping;
-import org.lwjgl.glfw.GLFW;
 
 public class KeyBindingReg {
     public static final String KEY_RELOAD = "key.bren.reload";
@@ -23,8 +22,8 @@ public class KeyBindingReg {
     public static void reg() {
         reloadKey = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                 KEY_RELOAD,
-                InputConstants.Type.KEYSYM,
-                GLFW.GLFW_KEY_R,
+                InputConstants.Type.KEYBOARD,
+                InputConstants.KEY_R,
                 KeyMapping.Category.GAMEPLAY
         ));
 

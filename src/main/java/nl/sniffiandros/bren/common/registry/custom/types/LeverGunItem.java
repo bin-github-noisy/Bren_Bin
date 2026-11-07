@@ -63,7 +63,7 @@ public class LeverGunItem extends RevolverItem {
 
                     // 应用平滑的动画变换
                     matrices.translate(0, sin1 * 0.3F - sin2 * 0.7F, -0.2F * sin1);
-                    matrices.mulPose(Axis.XP.rotation(sin1 * 1.047198F));
+                    matrices.rotate(Axis.XP, sin1 * 1.047198F);
                     
                     return true;
                 }

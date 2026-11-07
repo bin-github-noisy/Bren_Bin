@@ -142,7 +142,7 @@ public class ItemReg {
             MAGAZINE = registerCustomItem("magazine", s -> new MagazineItem(s, 30), new Item.Properties().stacksTo(1));
             CLOTHED_MAGAZINE = registerCustomItem("clothed_magazine", s -> new ColorableMagazineItem(s, 50), new Item.Properties().stacksTo(1));
             SHORT_MAGAZINE = registerCustomItem("short_magazine", s -> new MagazineItem(s, 15), new Item.Properties().stacksTo(1));
-            FIRE_AXE = registerCustomItem("fire_axe", FireAxeItem::new, new Item.Properties().stacksTo(1));
+//            FIRE_AXE = registerCustomItem("fire_axe", FireAxeItem::new, new Item.Properties().stacksTo(1));
             
             // 注册钩索
             LOGGER.info("Registering grappling hook");

@@ -33,7 +33,7 @@ public class MinecraftClientHudMixin {
     private Minecraft minecraft;
 
     @Inject(method = "renderLevel", at = @At("TAIL"))
-    private void renderHudOverlay(DeltaTracker deltaTracker, CallbackInfo ci) {
+    private void renderHudOverlay(CallbackInfo ci) {
         if (minecraft.player == null) {
             return;
         }
@@ -64,7 +64,7 @@ public class MinecraftClientHudMixin {
                       0,  // mouseX
                       0   // mouseY
                   );
-                HUD_OVERLAY.renderWithTexture(graphics, gameRenderState.guiRenderState, deltaTracker, i, max, gunItem.bulletAmount() > 1 ? 12 : 0);
+                HUD_OVERLAY.renderWithTexture(graphics, gameRenderState.guiRenderState, DeltaTracker.ZERO, i, max, gunItem.bulletAmount() > 1 ? 12 : 0);
             } catch (Exception e) {
                 LOGGER.error("Failed to create GuiGraphicsExtractor: {}", e.getMessage());
                 e.printStackTrace();

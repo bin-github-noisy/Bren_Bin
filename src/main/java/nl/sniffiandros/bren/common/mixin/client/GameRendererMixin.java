@@ -1,6 +1,5 @@
 package nl.sniffiandros.bren.common.mixin.client;
 
-import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.Options;
 import net.minecraft.client.renderer.GameRenderer;
@@ -28,7 +27,7 @@ public class GameRendererMixin {
     private boolean wasAiming = false;
 
     @Inject(method = "renderLevel", at = @At("HEAD"))
-    private void bren$modifyFov(DeltaTracker deltaTracker, CallbackInfo ci) {
+    private void bren$modifyFov(CallbackInfo ci) {
         Minecraft client = Minecraft.getInstance();
         Player player = client.player;
         

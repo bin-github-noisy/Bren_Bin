@@ -1,6 +1,5 @@
 package nl.sniffiandros.bren.common.registry.custom.types;
 
-import nl.sniffiandros.bren.common.registry.NetworkReg.ItemComponentSyncPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponentType;
@@ -12,6 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
@@ -24,6 +24,7 @@ import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import nl.sniffiandros.bren.common.Bren;
 import nl.sniffiandros.bren.common.entity.IGunUser;
+import nl.sniffiandros.bren.common.registry.NetworkReg.ItemComponentSyncPayload;
 import nl.sniffiandros.bren.common.registry.SoundReg;
 import nl.sniffiandros.bren.common.registry.TagReg;
 import nl.sniffiandros.bren.common.registry.custom.MagazineItem;
@@ -239,7 +240,7 @@ public class GunWithMagItem extends GunItem {
                             // 如果无法放入物品栏，则尝试giveItemStack方法
                             if (!player.addItem(emptyMag)) {
                                 // 如果还是无法给予，则掉落在地上
-                                player.drop(emptyMag, false);
+                                player.drop(emptyMag, false, Prediction.PREDICTED);
                                 LOGGER.info("Magazine dropped on ground: {}", magItemId);
                             } else {
                                 LOGGER.info("Magazine given to player: {}", magItemId);
@@ -408,7 +409,7 @@ public class GunWithMagItem extends GunItem {
 
                         if (!player.getInventory().add(emptyMag)) {
                             // 如果无法放入物品栏，则掉落在地上
-                            player.drop(emptyMag, false);
+                            player.drop(emptyMag, false, Prediction.PREDICTED);
                         }
 
                         // 清除标记

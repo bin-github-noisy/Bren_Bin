@@ -472,15 +472,15 @@ public abstract class ItemRendererMixin {
             // 调整Z轴位置，减少模型过于靠前的问题
             float zOffset = reloading ? 0 : (sin / 2 + f1 / 4) * 0.5F; // 减少50%的偏移量
             matrices.translate(0, 0, zOffset);
-            matrices.mulPose(com.mojang.math.Axis.ZP.rotationDegrees((float) (leftHanded ? -15 + d : 15 + d)));
-            matrices.mulPose(com.mojang.math.Axis.XP.rotationDegrees((sin3 * 10) * 0.5F)); // 降低后坐力强度
+            matrices.rotateDegrees(com.mojang.math.Axis.ZP, (float) (leftHanded ? -15 + d : 15 + d));
+            matrices.rotateDegrees(com.mojang.math.Axis.XP, (sin3 * 10) * 0.5F); // 降低后坐力强度
             
         } else {
             // 第三人称动画逻辑（基于1.21.6版本）
             float z = Math.max((1 - f + f1) / 2, 0);
             float f2 = reloading ? ((float) Math.sin((f1 * 2 - 0.5) * Math.PI) * 0.5F + 0.5F) / 3 : z;
-            matrices.mulPose(com.mojang.math.Axis.YP.rotationDegrees(leftHanded ? 10 : -10));
-            matrices.mulPose(com.mojang.math.Axis.XP.rotationDegrees(f2 * 30 + 45));
+            matrices.rotateDegrees(com.mojang.math.Axis.YP, leftHanded ? 10 : -10);
+            matrices.rotateDegrees(com.mojang.math.Axis.XP, f2 * 30 + 45);
             
             matrices.translate(0, -f2 / 4 + 0.25F, f2 / 8 - 0.25F);
         }

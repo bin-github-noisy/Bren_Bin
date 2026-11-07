@@ -38,7 +38,7 @@ public class GunHoldingFeatureRenderer<S extends HumanoidRenderState, M extends 
                 if (gunItem.holdingPose() == PoseType.TWO_ARMS) {
                     // 应用变换之前保存矩阵状态
                     matrices.pushPose();
-                    matrices.mulPose(Axis.YN.rotation((float) Math.toRadians(target_degree - 90)));
+                    matrices.rotate(Axis.YN, (float) Math.toRadians(target_degree - 90));
                     // 恢复矩阵状态
                     matrices.popPose();
                 }

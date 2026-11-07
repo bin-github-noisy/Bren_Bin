@@ -85,10 +85,10 @@ public class RevolverItem extends BulletOnlyGun {
                     // 应用Z轴旋转：根据左右手和装弹状态调整手枪角度
                     // 左手：90+25度基础角度，装弹时额外增加sin*180度旋转
                     // 右手：65度基础角度，装弹时额外增加sin*180度旋转
-                    matrices.mulPose(Axis.ZN.rotationDegrees((float) d * sin * 10));
+                    matrices.rotateDegrees(Axis.ZN, (float) d * sin * 10);
 
                     // 应用X轴旋转：基于冷却进度的轻微俯仰动画
-                    matrices.mulPose(Axis.XN.rotation((float) (d * 8)));
+                    matrices.rotate(Axis.XN, (float) (d * 8));
                     
                     return true;
                 }

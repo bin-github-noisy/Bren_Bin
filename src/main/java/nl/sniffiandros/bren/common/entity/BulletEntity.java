@@ -133,7 +133,7 @@ public class BulletEntity extends Projectile {
         }
 
         // 重置所有实体的无敌时间
-        entity.invulnerableTime = 0;
+        entity.setInvulnerableTime(0);
         DamageSource damageSource = DamageTypeReg.shot(this.level(), this, this.getOwner());
         
         float finalDamage = this.damage;
