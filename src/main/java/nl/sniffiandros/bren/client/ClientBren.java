@@ -79,6 +79,9 @@ public class ClientBren implements ClientModInitializer {
 
         ClientTickEvents.START_CLIENT_TICK.register(WeaponTickHolder::tick);
         ClientTickEvents.START_CLIENT_TICK.register(RecoilSys::tick);
+
+        // 注册钩索绳索渲染（RenderPearl 提交式、真 3D）
+        GrappleRopeRenderer.init();
     }
 
     // 添加一个新的方法来处理模型注册

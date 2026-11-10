@@ -17,14 +17,11 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 钩索物品类，实现将玩家拉向抓住的地方的功能
  */
 public class GrapplingHookItem extends Item {
-    private static final Logger LOGGER = LoggerFactory.getLogger(GrapplingHookItem.class);
     
     // 钩索属性
     public static final double HOOK_RANGE =100.0; // 钩索最大射程
@@ -44,23 +41,22 @@ public class GrapplingHookItem extends Item {
     
     public GrapplingHookItem(Properties settings) {
         super(settings.stacksTo(1));
-        LOGGER.info("Creating new GrapplingHookItem instance");
     }
     
     @Override
     public @NotNull InteractionResult use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         
-        // 检查冷却时间
-        if (player.getCooldowns().isOnCooldown(stack)) {
-            return InteractionResult.FAIL;
-        }
-        
-        // 检查是否已经钩住
+        // 检查是否已经钩住（释放必须在冷却检查之前，否则冷却期间无法收钩）
         if (isHooked(stack)) {
             // 释放钩索
             releaseHook(player, stack);
             return InteractionResult.SUCCESS;
+        }
+        
+        // 检查冷却时间
+        if (player.getCooldowns().isOnCooldown(stack)) {
+            return InteractionResult.FAIL;
         }
         
         // 检查是否有气体
@@ -82,10 +78,6 @@ public class GrapplingHookItem extends Item {
                 // 播放完成声音
                 level.playSound(null, player.getX(), player.getY(), player.getZ(), 
                     SoundEvents.EXPERIENCE_ORB_PICKUP, SoundSource.PLAYERS, 1.0F, 1.0F);
-                
-                LOGGER.debug("Grappling hook pumped and filled with gas");
-            } else {
-                LOGGER.debug("Grappling hook pumped: {}/{}", pumps, PUMPS_TO_FILL);
             }
             
             return InteractionResult.SUCCESS;
@@ -130,7 +122,6 @@ public class GrapplingHookItem extends Item {
             var itemId = net.minecraft.core.registries.BuiltInRegistries.ITEM.getKey(stack.getItem());
             player.getCooldowns().addCooldown(itemId, COOLDOWN_TICKS);
             
-            LOGGER.debug("Hook shot and hit block at: {}, gas remaining: {}", hookedPos, currentGas - 1);
             return InteractionResult.SUCCESS;
         }
         
@@ -147,10 +138,11 @@ public class GrapplingHookItem extends Item {
         // 播放释放声音
         player.level().playSound(null, player.getX(), player.getY(), player.getZ(), 
             SoundEvents.CROSSBOW_LOADING_START, SoundSource.PLAYERS, 0.5F, 1.0F);
-        
-        LOGGER.debug("Hook released");
     }
     
+    // 用于节流动作栏刷新
+    private static int statusTickCounter = 0;
+
     /**
      * 每刻更新钩索的物理效果
      */
@@ -177,18 +169,32 @@ public class GrapplingHookItem extends Item {
         // 计算拉取方向
         Vec3 pullDirection = toHook.normalize();
 
-        // 应用拉取力 - 增强拉力效果
-        double pullStrength = Math.min(PULL_SPEED * 2.0, distance * 0.15); // 距离越远拉力越大
-        Vec3 velocity = pullDirection.scale(pullStrength);
+        // 应用拉取力 - 距离越远拉力越大
+        double pullStrength = Math.min(PULL_SPEED * 5.0, distance * 0.25);
+        Vec3 desiredVelocity = pullDirection.scale(pullStrength);
 
-        // 使用addVelocity来添加拉力，而不是直接设置速度
-        player.addDeltaMovement(velocity);
-        
-        // 强制更新玩家移动
+        // 阻尼平滑：让当前速度向拉取目标速度逼近，避免 DeltaMovement 无限累积导致失控乱窜
+        double damp = 0.35;
+        Vec3 currentVelocity = player.getDeltaMovement();
+        Vec3 velocity = new Vec3(
+            currentVelocity.x + (desiredVelocity.x - currentVelocity.x) * damp,
+            currentVelocity.y + (desiredVelocity.y - currentVelocity.y) * damp,
+            currentVelocity.z + (desiredVelocity.z - currentVelocity.z) * damp
+        );
 
-        
-        // 显示动作栏信息
-        displayGasStatus(player, stack);
+        // 服务端主动位移玩家。仅 addDeltaMovement 在多人模式下会被客户端上报的位置覆盖，
+        // 这里先设置速度再调用 move() 由服务端主动位移并同步回客户端。
+        player.setDeltaMovement(velocity);
+        player.move(net.minecraft.world.entity.MoverType.SELF, velocity);
+
+        // 渲染绳索和锚点粒子
+        renderHookEffects(player, stack);
+
+        // 节流动作栏信息，避免每刻都刷新
+        if (++statusTickCounter >= 10) {
+            statusTickCounter = 0;
+            displayGasStatus(player, stack);
+        }
     }
 
     // 数据组件存储方法
@@ -205,7 +211,7 @@ public class GrapplingHookItem extends Item {
             net.minecraft.world.item.component.CustomData.of(nbt));
     }
 
-    private static Vec3 getHookedPos(ItemStack stack) {
+    public static Vec3 getHookedPos(ItemStack stack) {
         var customData = stack.get(net.minecraft.core.component.DataComponents.CUSTOM_DATA);
         if (customData == null) {
             return null;
@@ -234,7 +240,10 @@ public class GrapplingHookItem extends Item {
             net.minecraft.world.item.component.CustomData.of(nbt));
     }
 
-    private static boolean isHooked(ItemStack stack) {
+    /**
+     * 读取钩索是否钩住的状态（供服务端逻辑与客户端绳索渲染使用）
+     */
+    public static boolean isHooked(ItemStack stack) {
         var customData = stack.get(net.minecraft.core.component.DataComponents.CUSTOM_DATA);
         if (customData == null) {
             return false;

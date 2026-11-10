@@ -16,15 +16,12 @@ import nl.sniffiandros.bren.common.config.MConfig;
 import nl.sniffiandros.bren.common.config.SupplyCrateConfig;
 import nl.sniffiandros.bren.common.registry.ItemReg;
 import nl.sniffiandros.bren.common.registry.custom.MagazineItem;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class SupplyCrateFeature implements Feature {
-    private static final Logger LOGGER = LoggerFactory.getLogger(SupplyCrateFeature.class);
     
     // 枪械类型权重配置（从配置文件加载）
     private static final List<GunEntry> GUN_POOL = new ArrayList<>();
@@ -129,25 +126,19 @@ public class SupplyCrateFeature implements Feature {
     public boolean place(WorldGenLevel level, ChunkGenerator chunkGenerator, RandomSource random, BlockPos origin) {
         // 检查是否启用补给箱生成
         if (!MConfig.enableSupplyCrates.get()) {
-            LOGGER.debug("§c[SupplyCrate] Supply crate generation is disabled in config");
             return false;
         }
         
-        LOGGER.debug("Attempting to generate supply crate at origin: {}", origin);
         // 寻找合适的地表位置
         BlockPos surfacePos = findSuitableSurface(level, origin, random);
         if (surfacePos == null) {
-            LOGGER.debug("§c[SupplyCrate] Failed to find suitable surface position");
             return false;
         }
-        LOGGER.debug("§b[SupplyCrate] Found surface position: {}", surfacePos);
         
         // 检查生成条件
         if (!canPlaceCrate(level, surfacePos)) {
-            LOGGER.debug("§c[SupplyCrate] Position {} failed placement check", surfacePos);
             return false;
         }
-        LOGGER.debug("§b[SupplyCrate] Position {} passed placement check", surfacePos);
         
         // 放置木桶
         BlockState barrelState = Blocks.BARREL.defaultBlockState()
@@ -157,7 +148,6 @@ public class SupplyCrateFeature implements Feature {
         // 填充物品
         if (level.getBlockEntity(surfacePos) instanceof BarrelBlockEntity barrelEntity) {
             fillBarrel(barrelEntity, random);
-            LOGGER.info("§a[SupplyCrate] Generated supply crate at {} with {} items", surfacePos, barrelEntity.getContainerSize());
             return true;
         }
         

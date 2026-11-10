@@ -1,0 +1,22 @@
+{
+  "stats": {
+    "minecraft:killed": {
+      "minecraft:polar_bear": 1
+    },
+    "minecraft:custom": {
+      "minecraft:sprint_one_cm": 392,
+      "minecraft:time_since_rest": 941,
+      "minecraft:walk_one_cm": 410,
+      "minecraft:total_world_time": 961,
+      "minecraft:leave_game": 1,
+      "minecraft:fly_one_cm": 3251,
+      "minecraft:mob_kills": 1,
+      "minecraft:crouch_one_cm": 113,
+      "minecraft:sneak_time": 73,
+      "minecraft:play_time": 941,
+      "minecraft:jump": 1,
+      "minecraft:time_since_death": 941
+    }
+  },
+  "DataVersion": 5023
+}

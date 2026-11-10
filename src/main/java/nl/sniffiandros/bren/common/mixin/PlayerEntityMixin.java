@@ -23,8 +23,6 @@ import nl.sniffiandros.bren.common.registry.custom.types.GunItem;
 import nl.sniffiandros.bren.common.registry.custom.types.GunProperties;
 import nl.sniffiandros.bren.common.utils.GunHelper;
 import nl.sniffiandros.bren.common.utils.GunUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -38,8 +36,6 @@ import java.util.function.Predicate;
 @SuppressWarnings("UnresolvedMixinReference")
 @Mixin(Player.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser {
-    @Unique
-    private static final Logger LOGGER = LoggerFactory.getLogger("bren|PlayerEntityMixin");
     
     @Shadow public abstract ItemCooldowns getCooldowns();
 
@@ -116,7 +112,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         
         if (shouldAim != this.isAiming) {
             this.isAiming = shouldAim;
-            LOGGER.debug("Aiming state changed: {}", this.isAiming);
         }
         
         // 更新瞄准进度
@@ -164,7 +159,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
                     // 实际实现需要更详细的客户端代码
                 }
             } catch (Exception e) {
-                LOGGER.warn("Failed to apply spyglass zoom effect: {}", e.getMessage());
             }
         }
     }
@@ -251,7 +245,6 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
                 java.lang.reflect.Method sendMethod = clientPlayNetworkingClass.getMethod("send", Object.class);
                 sendMethod.invoke(null, payload);
             } catch (Exception e) {
-                LOGGER.warn("Failed to send shoot payload: {}", e.getMessage());
             }
         }
 
@@ -382,12 +375,9 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
                 attributeInstance.removeModifiers();
                 attributeInstance.setBaseValue(value);
                 // 添加日志记录以便调试
-                LOGGER.debug("Applied attribute {} with value {}", attributeEntry.getRegisteredName(), value);
             }
             // 移除警告日志，因为GunUtils.fire方法已经直接使用GunItem属性
             // 属性实例可能不存在是正常的，因为GunUtils.fire不依赖属性实例
-        } else {
-            LOGGER.warn("Attribute entry not found for attribute: {}", attribute);
         }
     }
 
@@ -403,15 +393,8 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         this.updateAimingState();
 
         ItemStack reloadingGun = gunUser.bren_1_21_1$getReloadingGun();
-        LOGGER.debug("PlayerEntityMixin reloadTick: player={}, reloadingGun={}, state={}, aiming={}, aimProgress={}",
-            player.getName().getString(),
-            reloadingGun.isEmpty() ? "EMPTY" : reloadingGun.getItem().toString(),
-            gunUser.bren_1_21_1$getGunState(),
-            gunUser.bren_1_21_1$isAiming(),
-            gunUser.bren_1_21_1$getAimProgress());
 
         if (!reloadingGun.isEmpty() && reloadingGun.getItem() instanceof GunItem gunItem) {
-            LOGGER.debug("Calling reloadTick for gun: {}", reloadingGun.getItem().toString());
             gunItem.reloadTick(reloadingGun, player.level(), player, gunUser);
         }
         
@@ -474,8 +457,5 @@ public abstract class PlayerEntityMixin extends LivingEntity implements IGunUser
         // 设置更新后的自定义数据
         gunStack.set(net.minecraft.core.component.DataComponents.CUSTOM_DATA, 
             net.minecraft.world.item.component.CustomData.of(nbt));
-        
-        LOGGER.debug("Updated magazine components for gun: hasMagazine={}, hasColorableMagazine={}", 
-            hasMagazine, hasColorableMagazine);
     }
 }

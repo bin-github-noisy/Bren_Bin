@@ -7,9 +7,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="Fixed the ammo display HUD">
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="Remove all LOGGER">
+      <change afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/GrappleRopeRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-1.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-1.log.gz" afterDir="false" />
@@ -17,17 +18,27 @@
       <change beforePath="$PROJECT_DIR$/run/logs/debug-3.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-3.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-4.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-4.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-5.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-5.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/options.txt" beforeDir="false" afterPath="$PROJECT_DIR$/run/options.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/usercache.json" beforeDir="false" afterPath="$PROJECT_DIR$/run/usercache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/DataComponentReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/DataComponentReg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/MagazineItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/MagazineItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/items/clothed_magazine.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/items/clothed_magazine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/items/magazine.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/items/magazine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/items/short_magazine.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/items/short_magazine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/clothed_magazine.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/clothed_magazine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/clothed_magazine_full.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/clothed_magazine_full.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/magazine.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/models/item/magazine.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/full_magazine_clothed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/magazine_cloth.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/magazine_cloth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/ClientBren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/ClientBren.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/HudOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/HudOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/MConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/MConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/SupplyCrateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/SupplyCrateConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/events/GrapplingHookHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/events/GrapplingHookHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/MinecraftClientHudMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/MinecraftClientHudMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/AttributeReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/AttributeReg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/ItemReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/ItemReg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/NetworkReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/NetworkReg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/WorldGenReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/WorldGenReg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/BulletOnlyGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/BulletOnlyGun.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/FlareGunItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/FlareGunItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GrapplingHookItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GrapplingHookItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunWithMagItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunWithMagItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/MachineGunItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/MachineGunItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/world/feature/SupplyCrateFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/world/feature/SupplyCrateFeature.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +131,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/bin-github-noisy/Bren_Bin.git&quot;,
-    &quot;accountId&quot;: &quot;5f7c76b4-9434-40bd-8f93-babfef3844a0&quot;
+    &quot;accountId&quot;: &quot;26a0102f-8f30-4b0b-9e26-e876b840903c&quot;
   }
 }</component>
   <component name="GradleLocalSettings">
@@ -139,35 +150,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Bren - 1.21.11 [:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
-    "Gradle.Bren - 1.21.11 [build].executor": "Run",
-    "Gradle.Bren - 1.21.11 [runClient].executor": "Run",
-    "Gradle.Bren - 1.21.11 [test].executor": "Run",
-    "Gradle.Bren - 26.1 [build].executor": "Run",
-    "Gradle.Bren - 26.1 [downloadAssets].executor": "Run",
-    "Gradle.Bren - 26.1 [genSources].executor": "Run",
-    "Gradle.Bren - 26.1 [runClientRenderDoc].executor": "Run",
-    "Gradle.Bren - 26.1 [runClient].executor": "Run",
-    "Gradle.Bren - 26.1.executor": "Run",
-    "Gradle.下载源代码.executor": "Run",
-    "Gradle.构建 Bren - 26.1.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "26.3",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "F:/mc-musketmod-patch-1/Bren - 26.1/src/main/resources/assets/bren/textures/item",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Bren - 1.21.11 [:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 1.21.11 [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 1.21.11 [runClient].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 1.21.11 [test].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 26.1 [build].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 26.1 [downloadAssets].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 26.1 [genSources].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 26.1 [runClientRenderDoc].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 26.1 [runClient].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Bren - 26.1.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.下载源代码.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.构建 Bren - 26.1.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;26.3&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/mc-musketmod-patch-1/Bren - 26.1/src/main/resources/assets/bren/textures/item&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\assets\bren\textures\item" />
@@ -185,7 +200,7 @@
       <recent name="nl.sniffiandros.bren.common.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Bren - 26.1 [build]">
+  <component name="RunManager" selected="Gradle.Bren - 26.1 [runClient]">
     <configuration name="Bren - 26.1 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -313,13 +328,21 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
+        <item itemvalue="Gradle.Bren - 26.1 [build]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
         <item itemvalue="Gradle.Bren - 26.1 [genSources]" />
         <item itemvalue="Gradle.Bren - 26.1 [downloadAssets]" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-37e91769500f-intellij.indexing.shared.core-IU-261.26222.65" />
+        <option value="bundled-js-predefined-d6986cc7102b-31caf2ab9e3c-JavaScript-IU-261.26222.65" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
@@ -481,8 +504,19 @@
       <option name="project" value="LOCAL" />
       <updated>1794030882934</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fixed the ammo display HUD">
+      <option name="closed" value="true" />
+      <created>1794032279894</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1794032279894</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
