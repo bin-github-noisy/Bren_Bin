@@ -122,6 +122,16 @@ public class GunUtils {
                 }
 
             }
+
+            // 应用后坐力推动玩家：施加一个向后的水平冲量，并用move主动位移以克服客户端速度重置
+            if (properties != null && properties.recoil > 0 && user instanceof Player playingPlayer) {
+                float kickback = properties.recoil * 0.35f;
+                Vec3 impulse = new Vec3(-front.x * kickback, 0.0, -front.z * kickback);
+                Vec3 current = playingPlayer.getDeltaMovement();
+                playingPlayer.setDeltaMovement(current.x + impulse.x, current.y, current.z + impulse.z);
+                playingPlayer.move(net.minecraft.world.entity.MoverType.SELF, impulse);
+            }
+
         }
 
         if (user instanceof Player player) {

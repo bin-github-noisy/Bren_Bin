@@ -8,37 +8,54 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba47fd9e-a010-41b8-bb01-8ef9aadea2bd" name="更改" comment="Remove all LOGGER">
-      <change afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/GrappleRopeRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Minecraft_Server.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-1.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/2026-11-10-1.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-2.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/2026-11-10-2.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-3.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/2026-11-10-3.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-4.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/2026-11-10-4.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-5.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/2026-11-10-5.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-6.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/2026-11-10-6.log.gz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/logs/2026-11-10-7.log.gz" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-1.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-1.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-2.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-2.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-3.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-3.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-4.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-4.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/logs/debug-5.log.gz" beforeDir="false" afterPath="$PROJECT_DIR$/run/logs/debug-5.log.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/options.txt" beforeDir="false" afterPath="$PROJECT_DIR$/run/options.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/data/minecraft/random_sequences.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/data/minecraft/random_sequences.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/data/minecraft/weather.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/data/minecraft/weather.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/data/minecraft/world_clocks.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/data/minecraft/world_clocks.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/data/minecraft/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/data/minecraft/raids.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-1.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-1.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-2.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-2.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-2.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.-2.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/entities/r.0.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/poi/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/poi/r.-1.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/poi/r.-2.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/poi/r.-2.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-1.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-1.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-1.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-1.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-1.1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-1.1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-2.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-2.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-2.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.-2.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.0.-1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.0.-1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.0.0.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.0.0.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.0.1.mca" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/overworld/region/r.0.1.mca" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/the_end/data/minecraft/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/the_end/data/minecraft/raids.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/the_nether/data/minecraft/raids.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/dimensions/minecraft/the_nether/data/minecraft/raids.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/level.dat" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/level.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/run/saves/New World (5)/level.dat_old" beforeDir="false" afterPath="$PROJECT_DIR$/run/saves/New World (5)/level.dat_old" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/run/usercache.json" beforeDir="false" afterPath="$PROJECT_DIR$/run/usercache.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/ClientBren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/ClientBren.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/HudOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/client/HudOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/Bren.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/MConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/MConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/SupplyCrateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/config/SupplyCrateConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/events/GrapplingHookHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/events/GrapplingHookHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/PlayerEntityMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/MinecraftClientHudMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/MinecraftClientHudMixin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/AttributeReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/AttributeReg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/ItemReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/ItemReg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/NetworkReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/NetworkReg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/WorldGenReg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/WorldGenReg.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/BulletOnlyGun.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/BulletOnlyGun.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/FlareGunItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/FlareGunItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GrapplingHookItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GrapplingHookItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunWithMagItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/GunWithMagItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/MachineGunItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/registry/custom/types/MachineGunItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/world/feature/SupplyCrateFeature.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/world/feature/SupplyCrateFeature.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/ItemRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/mixin/client/ItemRendererMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/utils/GunUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/nl/sniffiandros/bren/common/utils/GunUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/ar_15.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/ar_15/ar_15_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/ar_15/ar_15_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/ar_15/ar_15_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/bren/textures/item/ar_15/ar_15_4.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,39 +167,39 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Bren - 1.21.11 [:net.fabricmc.devlaunchinjector.Main.main()].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 1.21.11 [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 1.21.11 [runClient].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 1.21.11 [test].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 26.1 [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 26.1 [downloadAssets].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 26.1 [genSources].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 26.1 [runClientRenderDoc].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 26.1 [runClient].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Bren - 26.1.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.下载源代码.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.构建 Bren - 26.1.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;26.3&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;F:/mc-musketmod-patch-1/Bren - 26.1/src/main/resources/assets/bren/textures/item&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Bren - 1.21.11 [:net.fabricmc.devlaunchinjector.Main.main()].executor": "Run",
+    "Gradle.Bren - 1.21.11 [build].executor": "Run",
+    "Gradle.Bren - 1.21.11 [runClient].executor": "Run",
+    "Gradle.Bren - 1.21.11 [test].executor": "Run",
+    "Gradle.Bren - 26.1 [build].executor": "Run",
+    "Gradle.Bren - 26.1 [downloadAssets].executor": "Run",
+    "Gradle.Bren - 26.1 [genSources].executor": "Run",
+    "Gradle.Bren - 26.1 [runClientRenderDoc].executor": "Run",
+    "Gradle.Bren - 26.1 [runClient].executor": "Run",
+    "Gradle.Bren - 26.1.executor": "Run",
+    "Gradle.下载源代码.executor": "Run",
+    "Gradle.构建 Bren - 26.1.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "26.3",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "F:/mc-musketmod-patch-1/Bren - 26.1/src/main/resources/assets/bren/textures/item",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="F:\mc-musketmod-patch-1\Bren - 26.1\src\main\resources\assets\bren\textures\item" />
@@ -200,7 +217,7 @@
       <recent name="nl.sniffiandros.bren.common.entity" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.Bren - 26.1 [runClient]">
+  <component name="RunManager" selected="Gradle.Bren - 26.1 [build]">
     <configuration name="Bren - 26.1 [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -303,10 +320,15 @@
     </configuration>
     <configuration name="Bren - 26.1 [runClient]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="-Dorg.lwjgl.util.Debug" value="true -Dorg.lwjgl.opengl.Display.allowSoftwareOpenGL=true" />
+          </map>
+        </option>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -326,10 +348,19 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Gradle.Bren - 26.1 [build]" />
+      <item itemvalue="Gradle.Bren - 26.1 [downloadAssets]" />
+      <item itemvalue="Gradle.Bren - 26.1 [genSources]" />
+      <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
+      <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
+      <item itemvalue="应用程序.Minecraft Client" />
+      <item itemvalue="应用程序.Minecraft Server" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [build]" />
+        <item itemvalue="Gradle.Bren - 26.1 [runClient]" />
         <item itemvalue="Gradle.Bren - 26.1 [runClientRenderDoc]" />
         <item itemvalue="Gradle.Bren - 26.1 [genSources]" />
         <item itemvalue="Gradle.Bren - 26.1 [downloadAssets]" />
@@ -512,7 +543,15 @@
       <option name="project" value="LOCAL" />
       <updated>1794032279894</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Remove all LOGGER">
+      <option name="closed" value="true" />
+      <created>1794323664513</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1794323664513</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -535,7 +574,8 @@
     <MESSAGE value="2D model position fix" />
     <MESSAGE value="new gun" />
     <MESSAGE value="Fixed the ammo display HUD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed the ammo display HUD" />
+    <MESSAGE value="Remove all LOGGER" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove all LOGGER" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
